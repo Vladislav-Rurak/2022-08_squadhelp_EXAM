@@ -5,7 +5,7 @@ import CustomerDashboard from '../../components/CustomerDashboard/CustomerDashbo
 import CreatorDashboard from '../../components/CreatorDashboard/CreatorDashboard'
 import Header from '../../components/Header/Header'
 
-const Dashboard = props => {
+const DashboardPage = props => {
   const { role, history } = props
   return (
     <div>
@@ -21,4 +21,4 @@ const Dashboard = props => {
 
 const mapStateToProps = state => state.userStore.data
 
-export default connect(mapStateToProps)(Dashboard)
+export default connect(mapStateToProps)(DashboardPage)

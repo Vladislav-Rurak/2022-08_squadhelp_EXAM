@@ -5,11 +5,11 @@ import Header from '../../components/Header/Header'
 import CONSTANTS from '../../constants'
 import SlideBar from '../../components/SlideBar/SlideBar'
 import Footer from '../../components/Footer/Footer'
-import styles from './Home.module.sass'
+import styles from './HomePage.module.sass'
 import carouselConstants from '../../carouselConstants'
 import Spinner from '../../components/Spinner/Spinner'
 
-const Home = props => {
+const HomePage = props => {
   const [index, setIndex] = useState(0)
   const [styleName, setStyle] = useState(styles.headline__static)
   let timeout
@@ -270,4 +270,4 @@ const mapStateToProps = state => {
   return { isFetching }
 }
 
-export default connect(mapStateToProps, null)(Home)
+export default connect(mapStateToProps, null)(HomePage)

@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import { payRequest, clearPaymentStore } from '../../actions/actionCreator'
 import PayForm from '../../components/PayForm/PayForm'
-import styles from './Payment.module.sass'
+import styles from './PaymentPage.module.sass'
 import CONSTANTS from '../../constants'
 import Error from '../../components/Error/Error'
 
-const Payment = props => {
+const PaymentPage = props => {
   const pay = values => {
     const { contests } = props.contestStore
     const contestArray = []
@@ -88,4 +88,4 @@ const mapDispatchToProps = dispatch => ({
   clearPaymentStore: () => dispatch(clearPaymentStore())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Payment)
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentPage)

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
 import Header from '../../components/Header/Header'
-import styles from './UserProfile.module.sass'
+import styles from './UserProfilePage.module.sass'
 import CONSTANTS from '../../constants'
 import UserInfo from '../../components/UserInfo/UserInfo'
 import PayForm from '../../components/PayForm/PayForm'
@@ -13,7 +13,7 @@ import {
 } from '../../actions/actionCreator'
 import Error from '../../components/Error/Error'
 
-const UserProfile = props => {
+const UserProfilePage = props => {
   const pay = values => {
     const { number, expiry, cvc, sum } = values
     props.cashOut({
@@ -106,4 +106,4 @@ const mapDispatchToProps = dispatch => ({
   clearPaymentStore: () => dispatch(clearPaymentStore())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfilePage)
