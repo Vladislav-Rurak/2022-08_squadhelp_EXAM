@@ -1,16 +1,16 @@
-const jwt = require('jsonwebtoken');
-const CONSTANTS = require('../constants');
-const TokenError = require('../errors/TokenError');
-const userQueries =require('../controllers/queries/userQueries');
+const jwt = require('jsonwebtoken')
+const CONSTANTS = require('../constants')
+const TokenError = require('../errors/TokenError')
+const userQueries = require('../controllers/queries/userQueries')
 
 module.exports.checkAuth = async (req, res, next) => {
-  const accessToken = req.headers.authorization;
+  const accessToken = req.headers.authorization
   if (!accessToken) {
-    return next(new TokenError('need token'));
+    return next(new TokenError('need token'))
   }
   try {
-    const tokenData = jwt.verify(accessToken, CONSTANTS.JWT_SECRET);
-    const foundUser = await userQueries.findUser({ id: tokenData.userId });
+    const tokenData = jwt.verify(accessToken, CONSTANTS.JWT_SECRET)
+    const foundUser = await userQueries.findUser({ id: tokenData.userId })
     res.send({
       firstName: foundUser.firstName,
       lastName: foundUser.lastName,
@@ -19,22 +19,22 @@ module.exports.checkAuth = async (req, res, next) => {
       avatar: foundUser.avatar,
       displayName: foundUser.displayName,
       balance: foundUser.balance,
-      email: foundUser.email,
-    });
+      email: foundUser.email
+    })
   } catch (err) {
-    next(new TokenError());
+    next(new TokenError())
   }
-};
+}
 
 module.exports.checkToken = async (req, res, next) => {
-  const accessToken = req.headers.authorization;
+  const accessToken = req.headers.authorization
   if (!accessToken) {
-    return next(new TokenError('need token'));
+    return next(new TokenError('need token'))
   }
   try {
-    req.tokenData = jwt.verify(accessToken, CONSTANTS.JWT_SECRET);
-    next();
+    req.tokenData = jwt.verify(accessToken, CONSTANTS.JWT_SECRET)
+    next()
   } catch (err) {
-    next(new TokenError());
+    next(new TokenError())
   }
-};
+}

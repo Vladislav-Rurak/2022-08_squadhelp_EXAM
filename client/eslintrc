@@ -6,27 +6,20 @@
       "jsx": true
     }
   },
-  "plugins": [
-    "jest"
-  ],
+  "plugins": ["jest"],
   "extends": "eslint-config-airbnb",
   "parser": "babel-eslint",
   "rules": {
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "no-underscore-dangle": [
       "error",
       {
-        "allow": [
-          "_id"
-        ]
+        "allow": ["_id"]
       }
     ]
   },

@@ -1,20 +1,19 @@
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Selects', {
       type: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       describe: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.STRING,
-      },
-    });
+        type: Sequelize.STRING
+      }
+    })
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Selects');
-  },
-};
+    return queryInterface.dropTable('Selects')
+  }
+}

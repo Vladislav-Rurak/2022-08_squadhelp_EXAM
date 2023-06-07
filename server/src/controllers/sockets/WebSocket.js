@@ -1,34 +1,32 @@
-const CONSTANTS = require('../../constants');
+const CONSTANTS = require('../../constants')
 
-class WebSocket{
+class WebSocket {
   connect (namespace, io) {
-    this.io = io.of(namespace);
-    this.listen();
+    this.io = io.of(namespace)
+    this.listen()
   }
 
   listen () {
-    this.io.on(CONSTANTS.SOCKET_CONNECTION, (socket) => {
-      this.onSubscribe(socket);
-      this.onUnsubscribe(socket);
-      this.anotherSubscribes(socket);
-    });
+    this.io.on(CONSTANTS.SOCKET_CONNECTION, socket => {
+      this.onSubscribe(socket)
+      this.onUnsubscribe(socket)
+      this.anotherSubscribes(socket)
+    })
   }
 
-  anotherSubscribes (socket) {
-
-  }
+  anotherSubscribes (socket) {}
 
   onSubscribe (socket) {
-    socket.on(CONSTANTS.SOCKET_SUBSCRIBE, (id) => {
-      socket.join(id);
-    });
+    socket.on(CONSTANTS.SOCKET_SUBSCRIBE, id => {
+      socket.join(id)
+    })
   }
 
   onUnsubscribe (socket) {
-    socket.on(CONSTANTS.SOCKET_UNSUBSCRIBE, (id) => {
-      socket.leave(id);
-    });
+    socket.on(CONSTANTS.SOCKET_UNSUBSCRIBE, id => {
+      socket.leave(id)
+    })
   }
 }
 
-module.exports = WebSocket;
+module.exports = WebSocket
