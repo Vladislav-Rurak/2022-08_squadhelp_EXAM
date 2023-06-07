@@ -11,6 +11,7 @@ import ContestsContainer from '../ContestsContainer/ContestsContainer'
 import ContestBox from '../ContestBox/ContestBox'
 import styles from './CustomerDashboard.module.sass'
 import TryAgain from '../TryAgain/TryAgain'
+import { Link } from 'react-router-dom'
 
 class CustomerDashboard extends React.Component {
   loadMore = startFrom => {
@@ -72,7 +73,8 @@ class CustomerDashboard extends React.Component {
     return (
       <div className={styles.mainContainer}>
         <div className={styles.filterContainer}>
-          <div
+          <Link
+            style={{ textDecoration: 'none' }}
             onClick={() =>
               this.props.newFilter(CONSTANTS.CONTEST_STATUS_ACTIVE)
             }
@@ -84,8 +86,9 @@ class CustomerDashboard extends React.Component {
             })}
           >
             Active Contests
-          </div>
-          <div
+          </Link>
+          <Link
+            style={{ textDecoration: 'none' }}
             onClick={() =>
               this.props.newFilter(CONSTANTS.CONTEST_STATUS_FINISHED)
             }
@@ -97,8 +100,9 @@ class CustomerDashboard extends React.Component {
             })}
           >
             Completed contests
-          </div>
-          <div
+          </Link>
+          <Link
+            style={{ textDecoration: 'none' }}
             onClick={() =>
               this.props.newFilter(CONSTANTS.CONTEST_STATUS_PENDING)
             }
@@ -110,7 +114,7 @@ class CustomerDashboard extends React.Component {
             })}
           >
             Inactive contests
-          </div>
+          </Link>
         </div>
         <div className={styles.contestsContainer}>
           {error ? (

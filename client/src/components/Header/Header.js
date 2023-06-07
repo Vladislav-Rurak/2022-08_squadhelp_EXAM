@@ -3,11 +3,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import styles from './Header.module.sass'
 import CONSTANTS from '../../constants'
-import {
-  getUserAction,
-  clearUserStore,
-  headerRequest
-} from '../../actions/actionCreator'
+import { clearUserStore, headerRequest } from '../../actions/actionCreator'
 
 class Header extends React.Component {
   componentDidMount () {
@@ -72,7 +68,9 @@ class Header extends React.Component {
                 </Link>
               </li>
               <li>
-                <span onClick={this.logOut}>Logout</span>
+                <Link onClick={this.logOut} style={{ textDecoration: 'none' }}>
+                  <span>Logout</span>
+                </Link>
               </li>
             </ul>
           </div>
@@ -111,24 +109,32 @@ class Header extends React.Component {
         </div>
         <div className={styles.loginSignnUpHeaders}>
           <div className={styles.numberContainer}>
-            <img src={`${CONSTANTS.STATIC_IMAGES_PATH}phone.png`} alt='phone' />
-            <span>(877)&nbsp;355-3585</span>
+            <a href={`tel: +${CONSTANTS.CONTACT_INFO.TEL}`}>
+              <img
+                src={`${CONSTANTS.STATIC_IMAGES_PATH}phone.png`}
+                alt='phone'
+              />
+              <span>{CONSTANTS.CONTACT_INFO.TEL}</span>
+            </a>
           </div>
           <div className={styles.userButtonsContainer}>
             {this.renderLoginButtons()}
           </div>
         </div>
         <div className={styles.navContainer}>
-          <img
-            src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`}
-            className={styles.logo}
-            alt='blue_logo'
-          />
+          <Link to='/'>
+            <img
+              src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`}
+              className={styles.logo}
+              alt='blue_logo'
+            />
+          </Link>
+
           <div className={styles.leftNav}>
             <div className={styles.nav}>
               <ul>
                 <li>
-                  <span>NAME IDEAS</span>
+                  <span style={{ cursor: 'pointer' }}>NAME IDEAS</span>
                   <img
                     src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                     alt='menu'
@@ -161,7 +167,7 @@ class Header extends React.Component {
                   </ul>
                 </li>
                 <li>
-                  <span>CONTESTS</span>
+                  <span style={{ cursor: 'pointer' }}>CONTESTS</span>
                   <img
                     src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                     alt='menu'
@@ -191,7 +197,7 @@ class Header extends React.Component {
                   </ul>
                 </li>
                 <li>
-                  <span>Our Work</span>
+                  <span style={{ cursor: 'pointer' }}>Our Work</span>
                   <img
                     src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                     alt='menu'
@@ -212,7 +218,7 @@ class Header extends React.Component {
                   </ul>
                 </li>
                 <li>
-                  <span>Names For Sale</span>
+                  <span style={{ cursor: 'pointer' }}>Names For Sale</span>
                   <img
                     src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                     alt='menu'
@@ -239,7 +245,7 @@ class Header extends React.Component {
                   </ul>
                 </li>
                 <li>
-                  <span>Blog</span>
+                  <span style={{ cursor: 'pointer' }}>Blog</span>
                   <img
                     src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                     alt='menu'
@@ -264,12 +270,12 @@ class Header extends React.Component {
               </ul>
             </div>
             {this.props.data && this.props.data.role !== CONSTANTS.CREATOR && (
-              <div
+              <Link
                 className={styles.startContestBtn}
                 onClick={this.startContests}
               >
                 START CONTEST
-              </div>
+              </Link>
             )}
           </div>
         </div>
