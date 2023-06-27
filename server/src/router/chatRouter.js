@@ -6,7 +6,7 @@ const chatRouter = Router()
 
 chatRouter.post('/message', checkToken.checkToken, chatController.addMessage)
 
-chatRouter.get('/getChat', checkToken.checkToken, chatController.getChat)
+chatRouter.post('/getChat', checkToken.checkToken, chatController.getChat)
 
 chatRouter.get('/getPreview', checkToken.checkToken, chatController.getPreview)
 
