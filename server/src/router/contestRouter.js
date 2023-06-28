@@ -19,14 +19,14 @@ contestRouter.post(
 )
 
 contestRouter.get(
-  '/getContestById',
+  '/contest/:contestId',
   checkToken.checkToken,
   basicMiddlewares.canGetContest,
   contestController.getContestById
 )
 
 contestRouter.get(
-  '/getAllContests',
+  '/contests',
   checkToken.checkToken,
   basicMiddlewares.onlyForCreative,
   contestController.getContests
