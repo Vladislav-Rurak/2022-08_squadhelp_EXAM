@@ -248,7 +248,6 @@ module.exports.setOfferStatus = async (req, res, next) => {
 }
 
 module.exports.getCustomersContests = (req, res, next) => {
-  console.log('req.body', req.body)
   db.Contests.findAll({
     where: { status: req.headers.status, userId: req.tokenData.userId },
     limit: req.body.limit,
@@ -294,8 +293,7 @@ module.exports.getContests = (req, res, next) => {
         where: req.query.ownEntries ? { userId: req.tokenData.userId } : {},
         attributes: ['id']
       }
-    ],
-    logging: true
+    ]
   })
     .then(contests => {
       contests.forEach(
