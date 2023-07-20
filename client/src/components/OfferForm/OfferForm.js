@@ -13,14 +13,17 @@ const OfferForm = props => {
   const renderOfferInput = () => {
     if (props.contestType === CONTANTS.LOGO_CONTEST) {
       return (
-        <ImageUpload
-          name='offerData'
-          classes={{
-            uploadContainer: styles.imageUploadContainer,
-            inputContainer: styles.uploadInputContainer,
-            imgStyle: styles.imgStyle
-          }}
-        />
+        <>
+          <ImageUpload
+            name='offerData'
+            classes={{
+              uploadContainer: styles.imageUploadContainer,
+              inputContainer: styles.uploadInputContainer,
+              imgStyle: styles.imgStyle
+            }}
+          />
+          <button type='submit'>Submit</button>
+        </>
       )
     }
     return (

@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { useField } from 'formik'
 
 const ImageUpload = props => {
-  const [field] = useField(props.name)
+  const [field, meta, helpers] = useField(props.name)
   const { uploadContainer, inputContainer, imgStyle } = props.classes
   const onChange = e => {
     const node = window.document.getElementById('imagePreview')
@@ -12,7 +12,7 @@ const ImageUpload = props => {
     if (!file.type.match(imageType)) {
       e.target.value = ''
     } else {
-      field.onChange(file)
+      helpers.setValue(file)
       const reader = new FileReader()
       reader.onload = () => {
         node.src = reader.result
@@ -25,7 +25,6 @@ const ImageUpload = props => {
       <div className={inputContainer}>
         <span>Support only images (*.png, *.gif, *.jpeg)</span>
         <input
-          {...field}
           id='fileInput'
           type='file'
           accept='.jpg, .png, .jpeg'
