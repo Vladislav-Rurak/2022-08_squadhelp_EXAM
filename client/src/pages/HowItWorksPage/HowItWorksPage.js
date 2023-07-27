@@ -20,20 +20,27 @@ const HowItWorksPage = () => {
     <>
       <Header />
       <div>
-        <div>
-          <span>World's #1 Naming Platform</span>
-          <div>
+        <div className={styles.squadhelpWork}>
+          <div className={styles.namingPlatform}>
+            <span className={styles.spanPlatform}>
+              World's #1 Naming Platform
+            </span>
             <h1>How Does Squadhelp Work?</h1>
-            <p>
+            <p className={styles.squadhelpHelps}>
               Squadhelp helps you come up with a great name for your business by
               combining the power of crowdsourcing with sophisticated technology
               and Agency-level validation services.
-            </p>
+            </p>{' '}
+            <div>
+              <a href='https://vimeo.com/826948811' className={styles.video}>
+                <small className='fas fa-play mr-2'></small>
+                Play Video
+              </a>
+            </div>
           </div>
-          <div>
-            <a> VIDEO </a>
+          <div className={styles.squadhelpWorksSVG}>
+            <SquadhelpWorksSVG />
           </div>
-          <SquadhelpWorksSVG />
         </div>
         <div>
           <div>Out Services</div>
@@ -51,7 +58,7 @@ const HowItWorksPage = () => {
               suggestions for your business or brand. All names are auto-checked
               for URL availability.
             </p>
-            <a href='www.google.com'>Launch a Contest</a>
+            <Link to='startContest'>Launch a Contest</Link>
           </div>
           <div>
             <ExploreNamesSVG />
@@ -115,12 +122,12 @@ const HowItWorksPage = () => {
         </div>
         <div>
           <ul>
-            <a href=''>Launching A Contest</a>
-            <a href=''>Buying From Marketplace</a>
-            <a href=''>Managed Contests</a>
-            <a href=''>For Creatives</a>
+            <a href='#contest'>Launching A Contest</a>
+            <a href='#marketplace'>Buying From Marketplace</a>
+            <a href='#managed'>Managed Contests</a>
+            <a href='#creatives'>For Creatives</a>
           </ul>
-          <div>
+          <div id='contest'>
             <h3>Launching A Contest</h3>
             <button>
               How long does it take to start receiving submissions?
@@ -226,7 +233,7 @@ const HowItWorksPage = () => {
               </div>
             </button>
           </div>
-          <div>
+          <div id='marketplace'>
             <h3>Buying From Marketplace</h3>
             <button>
               What's included with a Domain Purchase?
@@ -262,7 +269,7 @@ const HowItWorksPage = () => {
               </div>
             </button>
           </div>
-          <div>
+          <div id='managed'>
             <h3>Managed Contests</h3>
             <button>
               What are Managed Contests?
@@ -350,7 +357,7 @@ const HowItWorksPage = () => {
               </div>
             </button>
           </div>
-          <div>
+          <div id='creatives'>
             <h3>For Creatives</h3>
             <button>
               Can anyone join your platform?
