@@ -19,9 +19,9 @@ const HowItWorksPage = () => {
   return (
     <>
       <Header />
-      <div>
-        <div className={styles.squadhelpWork}>
-          <div className={styles.namingPlatform}>
+      <div className={styles.mainContainer}>
+        <div className={styles.squadhelpWorkContainer}>
+          <div className={styles.namingPlatformContainer}>
             <span className={styles.spanPlatform}>
               World's #1 Naming Platform
             </span>
@@ -33,8 +33,7 @@ const HowItWorksPage = () => {
             </p>{' '}
             <div>
               <a href='https://vimeo.com/826948811' className={styles.video}>
-                <small className='fas fa-play mr-2'></small>
-                Play Video
+                <small className='fas fa-play mr-2'></small> Play Video
               </a>
             </div>
           </div>
@@ -42,15 +41,17 @@ const HowItWorksPage = () => {
             <SquadhelpWorksSVG />
           </div>
         </div>
-        <div>
-          <div>Out Services</div>
+        <div className={styles.outServicesContainer}>
+          <div>
+            <span className={styles.spanServices}>Out Services</span>
+          </div>
           <h2>3 Ways To Use Squadhelp</h2>
           <p>
             Squadhelp offers 3 ways to get you a perfect name for your business.
           </p>
         </div>
-        <div>
-          <div>
+        <div className={styles.contestContainer}>
+          <div className={styles.contests}>
             <LaunchContestSVG />
             <h3>Launch a Contest</h3>
             <p>
@@ -58,9 +59,11 @@ const HowItWorksPage = () => {
               suggestions for your business or brand. All names are auto-checked
               for URL availability.
             </p>
-            <Link to='startContest'>Launch a Contest</Link>
+            <a href='/startContest' className={styles.contestBtn}>
+              Launch a Contest
+            </a>
           </div>
-          <div>
+          <div className={styles.contests}>
             <ExploreNamesSVG />
             <h3>Explore Names For Sale</h3>
             <p>
@@ -68,9 +71,11 @@ const HowItWorksPage = () => {
               can purchase instantly. All names include a matching URL and a
               complimentary Logo Design
             </p>
-            <a href='www.google.com'>Explore Names For Sale</a>
+            <a href='http://www.google.com' className={styles.contestBtn}>
+              Explore Names For Sale
+            </a>
           </div>
-          <div>
+          <div className={styles.contests}>
             <ManagesContestSVG />
             <h3>Agency-level Managed Contests</h3>
             <p>
@@ -78,7 +83,9 @@ const HowItWorksPage = () => {
               rich experience of our branding consultants. Get a complete
               agency-level experience at a fraction of Agency costs
             </p>
-            <a href='www.google.com'>Learn more</a>
+            <a href='http://www.google.com' className={styles.contestBtn}>
+              Learn more
+            </a>
           </div>
         </div>
         <div></div>

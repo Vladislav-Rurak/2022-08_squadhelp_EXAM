@@ -11,6 +11,8 @@ const ExploreNamesSVG = () => (
     xmlSpace='preserve'
     className='injected-svg js-svg-injector'
     data-parent='#icon23'
+    width='72px'
+    height='72px'
   >
     <style type='text/css'>
       {`.icon-40-0{fill:#BDC5D1;}

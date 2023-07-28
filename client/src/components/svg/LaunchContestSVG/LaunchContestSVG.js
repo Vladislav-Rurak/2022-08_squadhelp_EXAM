@@ -11,6 +11,8 @@ const LaunchContestSVG = () => (
     xmlSpace='preserve'
     className='injected-svg js-svg-injector'
     data-parent='#icon24'
+    width='72px'
+    height='72px'
   >
     <style type='text/css'>
       {`.icon-7-0{fill:none;stroke:#FFFFFF;}
