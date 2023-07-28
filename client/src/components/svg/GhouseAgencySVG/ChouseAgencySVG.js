@@ -11,6 +11,7 @@ const ChouseAgencySVG = () => (
     xmlSpace='preserve'
     className='injected-svg js-svg-injector'
     data-parent='#SVGhouseAgency'
+    height='650px'
   >
     <style type='text/css'>
       {`.support-man-0{fill:none;stroke:#E7EAF3;}

@@ -2,8 +2,8 @@
       font-size: 16px
       font-family: "Arial"
       color: #77838F
-      line-height: 25px
-  
+      line-height: 1.7
+
 .startContestBtn
       text-align: center
       max-width: 340px
@@ -123,3 +123,67 @@ p
       font-size: 14px
       font-weight: 400
       text-decoration: none
+
+.namingContestContainer
+      border: 1px solid #e5e7eb
+      padding: 128px 15px
+
+.contestsWork
+      text-align: center
+
+.chouseAgency
+      position: relative
+      display: flex
+      justify-content: center
+      align-items: center
+
+.chouseAgencySVG
+      position: absolute
+      left: 100px
+
+.stepsContainer
+      padding: 100px
+
+.listContest
+      position: relative
+      padding: 32px
+      left: 400px
+      &:before
+            position: absolute
+            top: 0
+            bottom: 0
+            right: 0
+            left: -0.25rem
+            width: 2rem
+            height: 0.0625rem
+            border-top: 1px solid #e5e7eb
+            margin: auto auto auto 0
+            content: ""
+            margin-left: -35px
+      &::after
+            position: absolute
+            top: 6rem
+            bottom: 0
+            right: 0
+            left: -0.3125rem
+            width: 0.0625rem
+            height: 100%
+            border-right: 1px solid #e5e7eb
+            content: ""
+            margin-left: -2.2rem
+      &:last-child::after
+            height: 0
+
+.numberContainer
+      display: flex
+      justify-content: center
+      align-items: center
+      padding: 16px 0px 16px 40px
+      border: 1px solid #e5e7eb
+      width: 500px
+
+
+.stepNumber
+      color: #377DFF
+      font-size: 56px
+
