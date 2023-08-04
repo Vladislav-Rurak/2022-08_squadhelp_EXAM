@@ -198,7 +198,7 @@ const HowItWorksPage = () => {
           </div>
         </div>
         <div className={styles.buttonContainer}>
-          <div>
+          <div className={styles.navigationListContainer}>
             <ul className={styles.navigationList}>
               <a href='#contest' className={styles.listGroupItems}>
                 Launching A Contest
@@ -214,7 +214,7 @@ const HowItWorksPage = () => {
               </a>
             </ul>
           </div>
-          <div>
+          <div className={styles.buttonGroupContainer}>
             <div id='contest'>
               <h3>Launching A Contest</h3>
               <ToogleTextButtom

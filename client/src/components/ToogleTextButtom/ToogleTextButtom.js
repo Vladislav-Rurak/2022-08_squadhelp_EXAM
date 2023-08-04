@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styles from '../ToogleTextButtom/ToogleTextButtom.module.sass'
 
 const ToogleTextButtom = ({ initialText, visibleText, listItems }) => {
   const [isTextVisible, setTextVisibility] = useState(false)
@@ -9,21 +10,22 @@ const ToogleTextButtom = ({ initialText, visibleText, listItems }) => {
 
   return (
     <div>
-      <button onClick={toggleTextVisibility}>
-        {isTextVisible ? initialText : initialText}
+      <button onClick={toggleTextVisibility} className={styles.buttonGroup}>
+        {initialText}
+        <span className={styles.arrow}>{isTextVisible ? '▼' : '►'}</span>
+        {isTextVisible && (
+          <div className={styles.visibleText}>
+            {visibleText}
+            {listItems && listItems.length > 0 && (
+              <div>
+                {listItems.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </button>
-      {isTextVisible && (
-        <div>
-          {visibleText}
-          {listItems && listItems.length > 0 && (
-            <div>
-              {listItems.map(item => (
-                <li>{item}</li>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
     </div>
   )
 }
