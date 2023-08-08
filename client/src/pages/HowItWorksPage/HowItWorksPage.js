@@ -15,6 +15,8 @@ import InstagramSVG from '../../components/svg/InstagramSVG/InstagramSVG'
 import FacebookSVG from '../../components/svg/FacebookSVG/FacebookSVG'
 import TwitterSVG from '../../components/svg/TwitterSVG/TwitterSVG'
 import ToogleTextButtom from '../../components/ToogleTextButtom/ToogleTextButtom'
+import GetStartedSVG from '../../components/svg/GetStartedSVG/GetStartedSVG'
+import SheetSVG from '../../components/svg/SheetSVG/SheetSVG'
 
 const HowItWorksPage = () => {
   const submissionslistItem = [
@@ -401,79 +403,102 @@ const HowItWorksPage = () => {
           </div>
         </div>
         <div>
-          <h3>Ready to get started?</h3>
-          <p>
-            Fill out your contest brief and begin receiving custom name
-            suggestions within minutes.
-          </p>
-          <Link className={styles.startContestBtn} to='/startContest'>
-            START CONTEST
-          </Link>
+          <div className={styles.backgroundContainer}>
+            <div className={styles.getStartedSVG}>
+              <GetStartedSVG />
+            </div>
+            <div className={styles.sheetSVG}>
+              <SheetSVG />
+            </div>
+          </div>
+          <div className={styles.getStartedContainer}>
+            <h3 className={styles.headerStarted}>Ready to get started?</h3>
+            <p className={styles.paragraphStarted}>
+              Fill out your contest brief and begin receiving custom name
+              suggestions within minutes.
+            </p>
+            <Link className={styles.startContestButton} to='/startContest'>
+              Start A Contest
+            </Link>
+          </div>
         </div>
-        <div>
-          <div>
-            <img src={`${CONSTANTS.STATIC_IMAGES_PATH}stars.png`} alt='stars' />
+        <div className={styles.imagesContainer}>
+          <div className={styles.imageContainer}>
+            <img
+              src={`${CONSTANTS.STATIC_IMAGES_PATH}stars.png`}
+              alt='stars'
+              className={styles.lazyImage}
+            />
             <p>
               <span>4.9 out of 5 stars</span> from 25,000+ customers.
             </p>
           </div>
-          <div>
+          <div className={styles.imageContainer}>
             <img
-              src={`${CONSTANTS.STATIC_IMAGES_PATH}avatars.jpg`}
+              src={`${CONSTANTS.STATIC_IMAGES_PATH}avatars.png`}
               alt='avatars'
+              className={styles.avatars}
             />
             <p>
               Our branding community stands <span>200,000+</span> strong.
             </p>
           </div>
-          <div>
+          <div className={styles.imageContainer}>
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}sharing-files.png`}
               alt='sharing-files'
+              className={styles.lazyImage}
             />
             <p>
               <span>140+ Industries</span> supported across more than{' '}
               <span>85 countries</span> – and counting.
             </p>
           </div>
+        </div>
+        <div className={styles.questionsContainer}>
+          <div className={styles.ensureContainer}>
+            <ul>
+              <li>
+                <span className={styles.thinArrow}>&gt;</span>
+                <div>
+                  <h3>Pay a Fraction of cost vs hiring an agency</h3>
+                  <p>
+                    For as low as $199, our naming contests and marketplace
+                    allow you to get an amazing brand quickly and affordably.
+                  </p>
+                </div>
+              </li>
+              <li className={styles.topBorder}>
+                <span className={styles.thinArrow}>&gt;</span>
+                <div>
+                  <h3>Satisfaction Guarantee</h3>
+                  <p>
+                    Of course! We have policies in place to ensure that you are
+                    satisfied with your experience.{' '}
+                    <a href='http://www.google.com'> Learn more</a>
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
           <div>
-            <div>
-              <li>
-                <span>стрелка</span>
-                <h3>Pay a Fraction of cost vs hiring an agency</h3>
-                <p>
-                  For as low as $199, our naming contests and marketplace allow
-                  you to get an amazing brand quickly and affordably.
-                </p>
-              </li>
-              <li> линия</li>
-              <li>
-                <span>стрелка</span>
-                <h3>Satisfaction Guarantee</h3>
-                <p>
-                  Of course! We have policies in place to ensure that you are
-                  satisfied with your experience.{' '}
-                  <a href='http://www.google.com'> Learn more</a>
-                </p>
-              </li>
-            </div>
-            <div>
-              <div>
-                <h4>Questions?</h4>
-                <p>
-                  Speak with a Squadhelp platform expert to learn more and get
-                  your questions answered.
-                </p>
-                <button>Schedule Consultation</button>
-                <a href={`${CONSTANTS.CONTACT_INFO.TEL}`}>
-                  <img
-                    src={`${CONSTANTS.STATIC_IMAGES_PATH}phone_icon.png`}
-                    alt='phone_icon'
-                  />
-                  <span>{CONSTANTS.CONTACT_INFO.TEL}</span>
-                </a>{' '}
-                <span>Call us for assistance</span>
-              </div>
+            <div className={styles.expertContainer}>
+              <h4>Questions?</h4>
+              <p>
+                Speak with a Squadhelp platform expert to learn more and get
+                your questions answered.
+              </p>
+              <button className={styles.consultationBtn}>
+                Schedule Consultation
+              </button>
+              <a href={`${CONSTANTS.CONTACT_INFO.TEL}`}>
+                <img
+                  src={`${CONSTANTS.STATIC_IMAGES_PATH}phone_icon.png`}
+                  alt='phone_icon'
+                />
+                <span>&nbsp;&nbsp;{CONSTANTS.CONTACT_INFO.TEL}</span>
+              </a>
+              <span>Call us for assistance</span>
             </div>
           </div>
         </div>
