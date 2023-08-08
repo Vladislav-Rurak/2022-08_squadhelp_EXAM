@@ -17,6 +17,7 @@ import TwitterSVG from '../../components/svg/TwitterSVG/TwitterSVG'
 import ToogleTextButtom from '../../components/ToogleTextButtom/ToogleTextButtom'
 import GetStartedSVG from '../../components/svg/GetStartedSVG/GetStartedSVG'
 import SheetSVG from '../../components/svg/SheetSVG/SheetSVG'
+import SearchSVG from '../../components/svg/SearchSVG/SearchSVG'
 
 const HowItWorksPage = () => {
   const submissionslistItem = [
@@ -529,178 +530,199 @@ const HowItWorksPage = () => {
             />
           </div>
         </div>
-        <div>
-          <div>
-            <h2>Services</h2>
-            <li>
-              <a href='http://www.google.com'>Premium Domains For Sale</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Crowdsource Naming</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Naming Agency</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Brandable Domains</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Short Domains</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>3 Letter Domains</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>4 Letter Domains</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>5 Letter Domains</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>One Word Domains</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Industry Domains</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Agency Services</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Logo Contests</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Tagline Contests</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Trademark Filing Service</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Audience Test</a>
-            </li>
+        <div className={styles.infoContainer}>
+          <div className={styles.linkContainer}>
+            <div>
+              <h2>Services</h2>
+              <ul>
+                <li>
+                  <a href='http://www.google.com'>Premium Domains For Sale</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Crowdsource Naming</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Naming Agency</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Brandable Domains</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Short Domains</a>
+                </li>
+                <li className={styles.indentedList}>
+                  <a href='http://www.google.com'>3 Letter Domains</a>
+                </li>
+                <li className={styles.indentedList}>
+                  <a href='http://www.google.com'>4 Letter Domains</a>
+                </li>
+                <li className={styles.indentedList}>
+                  <a href='http://www.google.com'>5 Letter Domains</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>One Word Domains</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Industry Domains</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Agency Services</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Logo Contests</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Tagline Contests</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Trademark Filing Service</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Audience Test</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <ul>
+                <h2>Tools</h2>
+                <li>
+                  <a href='http://www.google.com'>Business Name Generator</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>How to Name Your Business</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Free Trademark Checker</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Branding Blog</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Business Naming eBook</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Startup Toolkit</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2>SquadHelp</h2>
+              <ul>
+                <li>
+                  <a href='http://www.google.com'>About</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Contact</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>How It Works</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Testimonials</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Our Work</a>
+                </li>
+                <li>
+                  <a href='http://www.google.com'>Help & FAQs</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2>Creatives</h2>
+              <ul>
+                <div>
+                  <li>
+                    <a href='http://www.google.com'>Get Started</a>
+                  </li>
+                  <li>
+                    <a href='http://www.google.com'>Help & FAQs</a>
+                  </li>
+                  <li>
+                    <a href='http://www.google.com'>Domain Selling Info</a>
+                  </li>
+                  <li>
+                    <a href='http://www.google.com'>Discussion Forum</a>
+                  </li>
+                </div>
+                <div className={styles.legalContainer}>
+                  <h2>Legal</h2>
+                  <li>
+                    <a href='http://www.google.com'>Terms of Service</a>
+                  </li>
+                  <li>
+                    <a href='http://www.google.com'>Privacy Policy</a>
+                  </li>
+                  <li>
+                    <a href='http://www.google.com'>Cookie Policy</a>
+                  </li>
+                </div>
+              </ul>
+            </div>
           </div>
-          <div>
-            <h2>Tools</h2>
-            <li>
-              <a href='http://www.google.com'>Business Name Generator</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>How to Name Your Business</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Free Trademark Checker</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Branding Blog</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Business Naming eBook</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Startup Toolkit</a>
-            </li>
-          </div>
-          <div>
-            <h2>SquadHelp</h2>
-            <li>
-              <a href='http://www.google.com'>About</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Contact</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>How It Works</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Testimonials</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Our Work</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Help & FAQs</a>
-            </li>
-          </div>
-          <div>
-            <h2>Creatives</h2>
-            <li>
-              <a href='http://www.google.com'>Get Started</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Help & FAQs</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Domain Selling Info</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Discussion Forum</a>
-            </li>
-            <h2>Legal</h2>
-            <li>
-              <a href='http://www.google.com'>Terms of Service</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Privacy Policy</a>
-            </li>
-            <li>
-              <a href='http://www.google.com'>Cookie Policy</a>
-            </li>
-          </div>
-        </div>
-        <div>
-          <h2>Trending Searches</h2>
-          <div>
-            <p>
-              Explore our unique, hand-picked brand & business names for sale
-              along with a matching, premium domain name. Buy instantly for a
-              fixed low price.
-            </p>
-            <input></input>
-            <button></button>
+          <div className={styles.footerContainer}>
+            <div className={styles.trendingContainer}>
+              <h2>Trending Searches</h2>
+              <p>
+                Explore our unique, hand-picked brand & business names for sale
+                along with a matching, premium domain name. Buy instantly for a
+                fixed low price.
+              </p>
+              <div className={styles.inputContainer}>
+                <input
+                  placeHolder='Search over 75,000 Names'
+                  className={styles.input}
+                ></input>
+                <button className={styles.searchBtn}>
+                  <SearchSVG />
+                </button>
+              </div>
+            </div>
+            <div className={styles.linkSVG}>
+              <div>
+                <a href='http://www.google.com'>
+                  <ShortNamesSVG />
+                  <span>Short Names</span>
+                </a>
+              </div>
+              <div>
+                <a href='http://www.google.com'>
+                  <ShortNamesSVG />
+                  <span>One Word</span>
+                </a>
+              </div>
+              <div>
+                <a href='http://www.google.com'>
+                  <ShortNamesSVG />
+                  <span>4-letter</span>
+                </a>
+              </div>
+              <div className={styles.fiveLetter}>
+                <a href='http://www.google.com'>
+                  <ShortNamesSVG />
+                  <span>5-letter</span>
+                </a>
+              </div>
+            </div>
           </div>
           <div>
             <div>
-              <a href='http://www.google.com'>
-                <ShortNamesSVG />
-                <span>Short Names</span>
-              </a>
+              <span>Copyright © 2023 Squadhelp Inc</span>
             </div>
             <div>
               <a href='http://www.google.com'>
-                <ShortNamesSVG />
-                <span>One Word</span>
+                <span>
+                  Squadhelp.com has a Shopper Approved rating of 4.9/5 based on
+                  2782 ratings and reviews
+                </span>
               </a>
             </div>
             <div>
-              <a href='http://www.google.com'>
-                <ShortNamesSVG />
-                <span>4-letter</span>
-              </a>
+              <LinkedInSVG />
+              <InstagramSVG />
+              <TwitterSVG />
+              <FacebookSVG />
             </div>
-            <div>
-              <a href='http://www.google.com'>
-                <ShortNamesSVG />
-                <span>5-letter</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div>
-            <span>Copyright © 2023 Squadhelp Inc</span>
-          </div>
-          <div>
-            <a href='http://www.google.com'>
-              <span>
-                Squadhelp.com has a Shopper Approved rating of 4.9/5 based on
-                2782 ratings and reviews
-              </span>
-            </a>
-          </div>
-          <div>
-            <LinkedInSVG />
-            <InstagramSVG />
-            <TwitterSVG />
-            <FacebookSVG />
           </div>
         </div>
       </div>
