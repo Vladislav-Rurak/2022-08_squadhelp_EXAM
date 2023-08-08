@@ -502,26 +502,30 @@ const HowItWorksPage = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className={styles.sponsorContainer}>
           <div>
             <h6>Featured In</h6>
           </div>
-          <div>
+          <div className={styles.sponsorImageContainer}>
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}/sponsors/Forbes-inactive.png`}
               alt='Forbes-inactive'
+              className={styles.sponsors}
             />
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}/sponsors/the_next_web_inactive.png`}
               alt='TNW'
+              className={styles.sponsors}
             />
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}/sponsors/chicago_inactive.png`}
               alt='Chicago'
+              className={styles.sponsors}
             />
             <img
               src={`${CONSTANTS.STATIC_IMAGES_PATH}/sponsors/mashable-inactive.png`}
               alt='Mashable'
+              className={styles.sponsors}
             />
           </div>
         </div>
