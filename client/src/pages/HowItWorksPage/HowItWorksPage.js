@@ -705,10 +705,8 @@ const HowItWorksPage = () => {
               </div>
             </div>
           </div>
-          <div>
-            <div>
-              <span>Copyright © 2023 Squadhelp Inc</span>
-            </div>
+          <div className={styles.footerInfo}>
+            <span>Copyright © 2023 Squadhelp Inc</span>
             <div>
               <a href='http://www.google.com'>
                 <span>
@@ -717,7 +715,7 @@ const HowItWorksPage = () => {
                 </span>
               </a>
             </div>
-            <div>
+            <div className={styles.socialMedia}>
               <LinkedInSVG />
               <InstagramSVG />
               <TwitterSVG />

@@ -6,6 +6,8 @@ const FacebookSVG = () => (
     viewBox='0 0 24 24'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
+    widht='24px'
+    height='24px'
   >
     <path
       d='M21 0H3C1.345 0 0 1.345 0 3V21C0 22.654 1.345 24 3 24H21C22.654 24 24 22.654 24 21V3C24 1.345 22.654 0 21 0Z'
