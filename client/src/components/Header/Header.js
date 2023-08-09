@@ -128,7 +128,7 @@ class Header extends React.Component {
             <div className={styles.nav}>
               <ul>
                 <li>
-                  <span style={{ cursor: 'pointer' }}>NAME IDEAS</span>
+                  <span style={{ cursor: 'pointer' }}>Name Ideas</span>
                   <img
                     src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                     alt='menu'
@@ -161,7 +161,7 @@ class Header extends React.Component {
                   </ul>
                 </li>
                 <li>
-                  <span style={{ cursor: 'pointer' }}>CONTESTS</span>
+                  <span style={{ cursor: 'pointer' }}>Contests</span>
                   <img
                     src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                     alt='menu'
