@@ -155,6 +155,11 @@ class Header extends React.Component {
                     <li>
                       <a href='http://www.google.com'>Tech</a>
                     </li>
+                    <li>
+                      <Link to='/events' style={{ textDecoration: 'none' }}>
+                        <span>Events</span>
+                      </Link>
+                    </li>
                     <li className={styles.last}>
                       <a href='http://www.google.com'>More Categories</a>
                     </li>

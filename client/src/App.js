@@ -19,6 +19,7 @@ import CONSTANTS from './constants'
 import browserHistory from './browserHistory'
 import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatContainer'
 import HowItWorksPage from './pages/HowItWorksPage/HowItWorksPage'
+import EventsPage from './pages/EventsPage/EventsPage'
 
 class App extends Component {
   render () {
@@ -97,6 +98,7 @@ class App extends Component {
             path='/how-it-works'
             component={PrivateHoc(HowItWorksPage)}
           />
+          <Route exact path='/events' component={PrivateHoc(EventsPage)} />
           <Route component={NotFound} />
         </Switch>
         <ChatContainer />
