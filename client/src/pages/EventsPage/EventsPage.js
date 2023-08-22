@@ -16,19 +16,33 @@ const EventsPage = () => {
     localStorage.setItem('events', JSON.stringify(events))
   }, [events])
 
-  const handleAddEvent = event => {
-    const newEvent = { ...event, id: uuidv4() }
+  // const handleEventAction = (event, isCompleted) => {
+  //   const updatedEvents = events.map(e => {
+  //     if (e.id === event.id) {
+  //       return { ...e, isCompleted }
+  //     }
+  //     return e
+  //   })
+
+  //   setEvents(updatedEvents)
+  // }
+
+  const handleAddEvent = eventData => {
+    const newEvent = {
+      id: uuidv4(),
+      ...eventData,
+      isCompleted: false
+    }
     setEvents(prevEvents => [...prevEvents, newEvent])
   }
 
-  const handleEventCompleted = id => {
+  const handleEventCompleted = eventId => {
     const updatedEvents = events.map(event => {
-      if (event.id === id) {
+      if (event.id === eventId) {
         return { ...event, isCompleted: true }
       }
       return event
     })
-
     setEvents(updatedEvents)
   }
 
@@ -73,7 +87,7 @@ const EventsPage = () => {
               time={event.time}
               notifyBefore={parseInt(event.notifyBefore)}
               isCompleted={event.isCompleted}
-              onEventCompleted={() => handleEventCompleted(event.id)}
+              onEventCompleted={handleEventCompleted}
             />
           ))}
         </div>

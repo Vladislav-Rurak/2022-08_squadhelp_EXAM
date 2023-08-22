@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 const EventForm = ({ onAddEvent }) => {
   const [name, setName] = useState('')
@@ -13,7 +14,8 @@ const EventForm = ({ onAddEvent }) => {
       date,
       time,
       notifyBefore: parseInt(notifyBefore),
-      isCompleted: false
+      isCompleted: false,
+      id: uuidv4()
     })
     setName('')
     setDate('')

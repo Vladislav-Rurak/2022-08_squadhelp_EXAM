@@ -1,43 +1,39 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { differenceInSeconds, format } from 'date-fns'
 
 const EventTimer = ({
   name,
   date,
   time,
-  notifyBefore,
   id,
+  notifyBefore,
   isCompleted,
   onEventCompleted
 }) => {
   const [timerText, setTimerText] = useState('')
-  const [completed, setCompleted] = useState('')
+  const intervalRef = useRef(null)
   const targetDate = new Date(`${date}T${time}`)
 
   useEffect(() => {
-    let interval
+    intervalRef.current = setInterval(() => {
+      const currentDate = new Date()
+      const secondsRemaining =
+        differenceInSeconds(targetDate, currentDate) - notifyBefore * 60
 
-    if (!completed) {
-      interval = setInterval(() => {
+      if (secondsRemaining <= 0) {
+        clearInterval(intervalRef.current)
+        setTimerText('Таймер истек')
+        onEventCompleted(id)
+      } else {
         const formattedTime = formatTimer(targetDate, notifyBefore)
         setTimerText(formattedTime)
-      }, 1000)
-    }
+      }
+    }, 1000)
 
     return () => {
-      clearInterval(interval)
+      clearInterval(intervalRef.current)
     }
-  }, [targetDate, notifyBefore, completed])
-
-  useEffect(() => {
-    const currentDate = new Date()
-    const secondsRemaining =
-      differenceInSeconds(targetDate, currentDate) - notifyBefore * 60
-
-    if (secondsRemaining <= 0) {
-      setCompleted(true)
-    }
-  }, [targetDate, notifyBefore])
+  }, [onEventCompleted, targetDate, notifyBefore])
 
   function formatTimeUnit (value, unit) {
     if (value !== 0) {
@@ -50,6 +46,10 @@ const EventTimer = ({
     const currentDate = new Date()
     const secondsRemaining =
       differenceInSeconds(targetDate, currentDate) - notifyBefore * 60
+
+    if (secondsRemaining <= 0) {
+      return 'Таймер истек'
+    }
 
     const years = Math.floor(secondsRemaining / (365 * 24 * 60 * 60))
     const months = Math.floor(
@@ -76,7 +76,8 @@ const EventTimer = ({
   return (
     <div>
       <div>{name}</div>
-      <div>{completed ? 'Таймер истек' : timerText}</div>
+      {isCompleted ? 'Таймер истек' : timerText}
+      <div></div>
     </div>
   )
 }
