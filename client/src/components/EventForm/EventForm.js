@@ -9,6 +9,7 @@ const EventForm = ({ onAddEvent }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
+
     onAddEvent({
       name,
       date,

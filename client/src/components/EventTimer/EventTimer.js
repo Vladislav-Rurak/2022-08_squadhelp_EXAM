@@ -13,13 +13,12 @@ const EventTimer = ({
   const [timerText, setTimerText] = useState('')
   const intervalRef = useRef(null)
   const targetDate = new Date(`${date}T${time}`)
+  const currentDate = new Date()
+  const secondsRemaining =
+    differenceInSeconds(targetDate, currentDate) - notifyBefore * 60
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
-      const currentDate = new Date()
-      const secondsRemaining =
-        differenceInSeconds(targetDate, currentDate) - notifyBefore * 60
-
       if (secondsRemaining <= 0) {
         clearInterval(intervalRef.current)
         setTimerText('Таймер истек')
@@ -42,11 +41,7 @@ const EventTimer = ({
     return ''
   }
 
-  function formatTimer (targetDate, notifyBefore) {
-    const currentDate = new Date()
-    const secondsRemaining =
-      differenceInSeconds(targetDate, currentDate) - notifyBefore * 60
-
+  function formatTimer () {
     if (secondsRemaining <= 0) {
       return 'Таймер истек'
     }
@@ -76,8 +71,7 @@ const EventTimer = ({
   return (
     <div>
       <div>{name}</div>
-      {isCompleted ? 'Таймер истек' : timerText}
-      <div></div>
+      <div>{isCompleted ? 'Таймер истек' : timerText}</div>
     </div>
   )
 }

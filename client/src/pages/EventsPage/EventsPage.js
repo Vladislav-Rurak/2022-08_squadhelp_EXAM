@@ -16,24 +16,25 @@ const EventsPage = () => {
     localStorage.setItem('events', JSON.stringify(events))
   }, [events])
 
-  // const handleEventAction = (event, isCompleted) => {
-  //   const updatedEvents = events.map(e => {
-  //     if (e.id === event.id) {
-  //       return { ...e, isCompleted }
-  //     }
-  //     return e
-  //   })
-
-  //   setEvents(updatedEvents)
-  // }
-
   const handleAddEvent = eventData => {
-    const newEvent = {
-      id: uuidv4(),
-      ...eventData,
-      isCompleted: false
+    const now = new Date().getTime()
+    const targetTime = new Date(`${eventData.date}T${eventData.time}`).getTime()
+    const notifyBeforeInSeconds = eventData.notifyBefore * 60
+
+    const isEventCompleted = now > targetTime - notifyBeforeInSeconds * 1000
+
+    if (isEventCompleted) {
+      alert('Вы не можете добавить завершенное событие')
+      return
     }
-    setEvents(prevEvents => [...prevEvents, newEvent])
+    if (!eventData.isCompleted) {
+      const newEvent = {
+        id: uuidv4(),
+        ...eventData,
+        isCompleted: false
+      }
+      setEvents(prevEvents => [...prevEvents, newEvent])
+    }
   }
 
   const handleEventCompleted = eventId => {
@@ -71,11 +72,19 @@ const EventsPage = () => {
     return timeRemainingA - timeRemainingB
   })
 
+  const completedEventsCount = events.filter(event => event.isCompleted).length
+
   return (
     <>
+      <Header />
       <div className='events-page'>
         <h1>Events</h1>
         <EventForm onAddEvent={handleAddEvent} />
+        <div>
+          {completedEventsCount === 0
+            ? ' '
+            : `Events ${completedEventsCount} completed`}
+        </div>
         <div className='event-list'>
           <button onClick={handleClearEvents}>Clear Events</button>
           {sortedEvents.map(event => (
