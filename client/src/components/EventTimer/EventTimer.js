@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { differenceInSeconds, format } from 'date-fns'
+import styles from './EventTimer.module.sass'
 
 const EventTimer = ({
   name,
@@ -11,28 +12,53 @@ const EventTimer = ({
   onEventCompleted
 }) => {
   const [timerText, setTimerText] = useState('')
+  const [progress, setProgress] = useState(0)
+  const [initialSecondsRemaining] = useState(
+    differenceInSeconds(new Date(`${date}T${time}`), new Date()) -
+      notifyBefore * 60
+  )
+
   const intervalRef = useRef(null)
-  const targetDate = new Date(`${date}T${time}`)
-  const currentDate = new Date()
-  const secondsRemaining =
-    differenceInSeconds(targetDate, currentDate) - notifyBefore * 60
 
   useEffect(() => {
-    intervalRef.current = setInterval(() => {
-      if (secondsRemaining <= 0) {
-        clearInterval(intervalRef.current)
-        setTimerText('Таймер истек')
-        onEventCompleted(id)
-      } else {
-        const formattedTime = formatTimer(targetDate, notifyBefore)
-        setTimerText(formattedTime)
-      }
-    }, 1000)
+    let intervalId
 
-    return () => {
-      clearInterval(intervalRef.current)
+    const updateTimer = () => {
+      const targetDate = new Date(`${date}T${time}`)
+      const currentDate = new Date()
+      const secondsRemaining =
+        differenceInSeconds(targetDate, currentDate) - notifyBefore * 60
+
+      if (secondsRemaining <= 0) {
+        clearInterval(intervalId)
+        setTimerText('Таймер истек')
+        if (!isCompleted) {
+          onEventCompleted(id) // Вызывается только если событие не завершено
+        }
+      } else {
+        const formattedTime = formatTimer(secondsRemaining)
+        setTimerText(formattedTime)
+        const remainingTimePercentage =
+          (secondsRemaining / initialSecondsRemaining) * 100
+        setProgress(100 - remainingTimePercentage)
+      }
     }
-  }, [onEventCompleted, targetDate, notifyBefore])
+
+    intervalId = setInterval(updateTimer, 1000)
+
+    // Очищаем интервал при размонтировании компонента
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [
+    onEventCompleted,
+    date,
+    time,
+    id,
+    notifyBefore,
+    initialSecondsRemaining,
+    isCompleted
+  ])
 
   function formatTimeUnit (value, unit) {
     if (value !== 0) {
@@ -41,7 +67,7 @@ const EventTimer = ({
     return ''
   }
 
-  function formatTimer () {
+  function formatTimer (secondsRemaining) {
     if (secondsRemaining <= 0) {
       return 'Таймер истек'
     }
@@ -69,9 +95,16 @@ const EventTimer = ({
   }
 
   return (
-    <div>
+    <div
+      style={{ width: !isCompleted ? `${progress}%` : ' ' }}
+      className={`${
+        isCompleted ? styles.eventListCompleted : styles.eventList
+      }`}
+    >
       <div>{name}</div>
-      <div>{isCompleted ? 'Таймер истек' : timerText}</div>
+      <div className={styles.timerItems}>
+        {isCompleted ? 'Таймер истек' : timerText}
+      </div>
     </div>
   )
 }
