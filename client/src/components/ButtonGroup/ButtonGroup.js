@@ -15,20 +15,55 @@ const ButtonGroup = () => {
   }
 
   return (
-    <div className={styles.ButtonGroupContainer}>
-      <button onClick={() => textChange(0)}>
-        <span className={styles.buttonHeader}>{texts[0]}</span>
-        <p className={styles.text}>The Domain should exactly match the name</p>
+    <div className={styles.buttonGroupContainer}>
+      <button
+        onClick={() => textChange(0)}
+        className={
+          texts[0] === 'No' ? styles.negativeButtons : styles.ststatementButtons
+        }
+      >
+        <span
+          className={
+            texts[0] === 'No' ? styles.negativeText : styles.statementText
+          }
+        >
+          {texts[0]}
+        </span>
+        <p className={texts[0] === 'No' ? styles.negativeParText : ' '}>
+          The Domain should exactly match the name
+        </p>
       </button>
-      <button onClick={() => textChange(1)}>
-        <span className={styles.buttonHeader}>{texts[1]}</span>
-        <p className={styles.text}>
+      <button
+        onClick={() => textChange(1)}
+        className={
+          texts[1] === 'No' ? styles.negativeButtons : styles.ststatementButtons
+        }
+      >
+        <span
+          className={
+            texts[1] === 'No' ? styles.negativeText : styles.statementText
+          }
+        >
+          {texts[1]}
+        </span>
+        <p className={texts[1] === 'No' ? styles.negativeParText : ' '}>
           But minor variations are allowed (Recommended)
         </p>
       </button>
-      <button onClick={() => textChange(2)}>
-        <span className={styles.buttonHeader}>{texts[2]}</span>
-        <p className={styles.text}>
+      <button
+        onClick={() => textChange(2)}
+        className={
+          texts[2] === 'No' ? styles.negativeButtons : styles.ststatementButtons
+        }
+      >
+        <span
+          className={
+            texts[2] === 'No' ? styles.negativeText : styles.statementText
+          }
+        >
+          {texts[2]}
+        </span>
+        <p className={texts[2] === 'No' ? styles.negativeParText : ' '}>
           I am only looking for a name, not a Domain
         </p>
       </button>
