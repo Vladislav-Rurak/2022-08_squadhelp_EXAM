@@ -4,5 +4,5 @@ CREATE TABLE Conversation{
   blackList BOOLEAN[] NOT NULL,
   favoriteList BOOLEAN[] NOT NULL,
   created_at TIMESTAMP NOT NULL,
-  uodated_at TIMESTAMP NOT NULL
+  updated_at TIMESTAMP NOT NULL
 }
