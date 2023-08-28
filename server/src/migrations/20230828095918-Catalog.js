@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Catalog', {
+    await queryInterface.createTable('Catalogs', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -25,29 +25,36 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    }),
-      await queryInterface.createTable('CatalogChat', {
-        catalogId: {
-          allowNull: false,
-          type: Sequelize.INTEGER,
-          references: {
-            model: 'Catalogs',
-            key: id
-          }
-        },
-        chatId: {
-          allowNull: false,
-          type: Sequelize.INTEGER,
-          references: {
-            model: 'Conversation',
-            key: id
-          }
+    })
+
+    await queryInterface.createTable('CatalogChats', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      catalogId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Catalog',
+          key: 'id'
         }
-      })
+      },
+      chatId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Conversation',
+          key: 'id'
+        }
+      }
+    })
   },
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('CatalogChat')
-    await queryInterface.dropTable('Catalogs')
+    await queryInterface.dropTable('Catalog')
   }
 }
