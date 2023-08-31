@@ -1,3 +1,5 @@
+const { logError } = require('./LoggerError')
+
 class ApplicationError extends Error {
   constructor (message, status) {
     super()
@@ -5,6 +7,12 @@ class ApplicationError extends Error {
     this.name = this.constructor.name
     this.message = message || 'Something went wrong. Please try again'
     this.code = status || 500
+    this.stackTrace = this.stack
+    logError({
+      message: this.message,
+      code: this.code,
+      stackTrace: this.stackTrace
+    })
   }
 }
 
