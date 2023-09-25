@@ -127,7 +127,9 @@ module.exports.setNewOffer = async (req, res, next) => {
     delete result.contestId
     delete result.userId
     controller.getNotificationController().emitEntryCreated(req.body.customerId)
-    const User = Object.assign({}, req.tokenData, { id: req.tokenData.userId })
+    const User = Object.assign({}, req.tokenData, {
+      id: req.tokenData.userId
+    })
     res.send(Object.assign({}, result, { User }))
   } catch (e) {
     return next(new ServerError())
@@ -147,6 +149,22 @@ const rejectOffer = async (offerId, creatorId, contestId) => {
       contestId
     )
   return rejectedOffer
+}
+
+const approveOffer = async offerId => {
+  const approveOffer = await contestQueries.updateOffer(
+    { status: CONSTANTS.OFFER_STATUS_APPROVE },
+    { id: offerId }
+  )
+}
+
+const declineOffer = async offerId => {
+  const declineOffer = await contestQueries.updateOffer(
+    {
+      status: CONSTANTS.OFFER_STATUS_DECLINE
+    },
+    { id: offerId }
+  )
 }
 
 const resolveOffer = async (
@@ -227,7 +245,8 @@ module.exports.setOfferStatus = async (req, res, next) => {
     } catch (err) {
       next(err)
     }
-  } else if (req.body.command === 'resolve') {
+  }
+  if (req.body.command === 'resolve') {
     try {
       transaction = await db.sequelize.transaction()
       const winningOffer = await resolveOffer(
@@ -241,6 +260,30 @@ module.exports.setOfferStatus = async (req, res, next) => {
       res.send(winningOffer)
     } catch (err) {
       transaction.rollback()
+      next(err)
+    }
+  }
+  if (req.body.command === 'approve') {
+    try {
+      const offer = await approveOffer(
+        req.body.offerId,
+        req.body.creatorId,
+        req.body.contestId
+      )
+      res.send(offer)
+    } catch (err) {
+      next(err)
+    }
+  }
+  if (req.body.command === 'decline') {
+    try {
+      const offer = await declineOffer(
+        req.body.offerId,
+        req.body.creatorId,
+        req.body.contestId
+      )
+      res.send(offer)
+    } catch (err) {
       next(err)
     }
   }

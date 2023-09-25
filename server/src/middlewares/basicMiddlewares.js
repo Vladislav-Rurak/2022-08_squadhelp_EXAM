@@ -23,7 +23,10 @@ module.exports.canGetContest = async (req, res, next) => {
       result = await bd.Contests.findOne({
         where: { id: req.params.contestId, userId: req.tokenData.userId }
       })
-    } else if (req.tokenData.role === CONSTANTS.CREATOR) {
+    } else if (
+      req.tokenData.role === CONSTANTS.CREATOR ||
+      req.tokenData.role === CONSTANTS.MODERATOR
+    ) {
       result = await bd.Contests.findOne({
         where: {
           id: req.params.contestId,
@@ -81,8 +84,12 @@ module.exports.canSendOffer = async (req, res, next) => {
   }
 }
 
-module.exports.onlyForCustomerWhoCreateContest = async (req, res, next) => {
+module.exports.onlyForModerator = async (req, res, next) => {
   try {
+    if (req.tokenData.role === CONSTANTS.MODERATOR) {
+      return next()
+    }
+
     const result = await bd.Contests.findOne({
       where: {
         userId: req.tokenData.userId,

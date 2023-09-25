@@ -40,35 +40,56 @@ class ContestPage extends React.Component {
 
   setOffersList = () => {
     const array = []
-    for (let i = 0; i < this.props.contestByIdStore.offers.length; i++) {
-      array.push(
-        <OfferBox
-          data={this.props.contestByIdStore.offers[i]}
-          key={this.props.contestByIdStore.offers[i].id}
-          needButtons={this.needButtons}
-          setOfferStatus={this.setOfferStatus}
-          contestType={this.props.contestByIdStore.contestData.contestType}
-          date={new Date()}
-        />
+    const contestData = this.props.contestByIdStore.offers
+    const role = this.props.userStore.data.role
+    const statuses = contestData.map(data => data.status)
+    if (statuses === 'approve' && role === CONSTANTS.CUSTOMER) {
+      return (
+        <div className={styles.notFound}>
+          There is no suggestion at this moment
+        </div>
+      )
+    } else {
+      for (let i = 0; i < this.props.contestByIdStore.offers.length; i++) {
+        array.push(
+          <OfferBox
+            data={this.props.contestByIdStore.offers[i]}
+            key={this.props.contestByIdStore.offers[i].id}
+            needModeratorButtons={this.needModeratorButtons}
+            needCustomerButtons={this.needCustomerButtons}
+            setOfferStatus={this.setOfferStatus}
+            contestType={this.props.contestByIdStore.contestData.contestType}
+            date={new Date()}
+          />
+        )
+      }
+      return array.length !== 0 ? (
+        array
+      ) : (
+        <div className={styles.notFound}>
+          There is no suggestion at this moment
+        </div>
       )
     }
-    return array.length !== 0 ? (
-      array
-    ) : (
-      <div className={styles.notFound}>
-        There is no suggestion at this moment
-      </div>
+  }
+
+  needModeratorButtons = offerStatus => {
+    const userRole = this.props.userStore.data.role
+    const contestStatus = this.props.contestByIdStore.contestData.status
+    return (
+      userRole === CONSTANTS.MODERATOR &&
+      contestStatus === CONSTANTS.CONTEST_STATUS_ACTIVE &&
+      offerStatus === CONSTANTS.OFFER_STATUS_PENDING
     )
   }
 
-  needButtons = offerStatus => {
-    const contestCreatorId = this.props.contestByIdStore.contestData.User.id
-    const userId = this.props.userStore.data.id
+  needCustomerButtons = offerStatus => {
+    const userRole = this.props.userStore.data.role
     const contestStatus = this.props.contestByIdStore.contestData.status
     return (
-      contestCreatorId === userId &&
+      userRole === CONSTANTS.CUSTOMER &&
       contestStatus === CONSTANTS.CONTEST_STATUS_ACTIVE &&
-      offerStatus === CONSTANTS.OFFER_STATUS_PENDING
+      offerStatus === CONSTANTS.OFFER_STATUS_APPROVE
     )
   }
 
