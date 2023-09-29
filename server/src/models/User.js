@@ -80,5 +80,12 @@ module.exports = (sequelize, DataTypes) => {
     })
   }
 
+  User.associate = function (models) {
+    User.hasMany(models.Conversation, {
+      foreignKey: 'user_id',
+      targetKey: 'id'
+    })
+  }
+
   return User
 }
