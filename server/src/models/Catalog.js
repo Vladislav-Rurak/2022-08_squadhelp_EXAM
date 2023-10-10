@@ -26,9 +26,17 @@ module.exports = (sequelize, DataTypes) => {
   )
 
   Catalog.associate = function (models) {
-    Catalog.hasMany(models.Conversations, {
-      foreignKey: 'catalogId',
-      as: 'chats'
+    Catalog.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      targetKey: 'id'
+    })
+  }
+
+  Catalog.associate = function (models) {
+    Catalog.belongsToMany(models.Conversation, {
+      through: 'CatalogChat',
+      foreignKey: 'conversation_id',
+      targetKey: 'id'
     })
   }
 

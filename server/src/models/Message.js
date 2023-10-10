@@ -17,10 +17,19 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING
       },
       conversationId: {
+        allowNull: false,
         type: DataTypes.INTEGER
       }
     },
-    { timestamps: true, tableName: 'Messages' }
+    { timestamps: true }
   )
+
+  Message.associate = function (models) {
+    Message.belongsTo(models.Conversation, {
+      foreignKey: 'conversation_id',
+      targetKey: 'id',
+      as: 'conversationData'
+    })
+  }
   return Message
 }
