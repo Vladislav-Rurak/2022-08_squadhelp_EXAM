@@ -15,11 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       catalogName: {
         type: DataTypes.STRING,
         allowNull: false
-      },
-      chats: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
-        allowNull: false,
-        defaultValue: []
       }
     },
     { timestamps: true }
@@ -34,9 +29,10 @@ module.exports = (sequelize, DataTypes) => {
 
   Catalog.associate = function (models) {
     Catalog.belongsToMany(models.Conversation, {
-      through: 'CatalogChat',
-      foreignKey: 'conversation_id',
-      targetKey: 'id'
+      through: 'CatalogChats',
+      foreignKey: 'chat_id',
+      targetKey: 'id',
+      as: 'CatalogConversations'
     })
   }
 

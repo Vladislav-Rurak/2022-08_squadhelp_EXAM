@@ -45,9 +45,10 @@ module.exports = (sequelize, DataTypes) => {
 
   Conversation.associate = function (models) {
     Conversation.belongsToMany(models.Catalog, {
-      through: 'CatalogChat',
-      foreignKey: 'conversation_id',
-      targetKey: 'id'
+      through: 'CatalogChats',
+      foreignKey: 'catalog_id',
+      targetKey: 'id',
+      as: 'CatalogConversations'
     })
   }
 

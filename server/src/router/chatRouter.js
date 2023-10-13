@@ -35,7 +35,7 @@ chatRouter.delete(
 )
 
 chatRouter.delete(
-  '/deleteCatalog',
+  '/:catalogId',
   checkToken.checkToken,
   chatController.deleteCatalog
 )

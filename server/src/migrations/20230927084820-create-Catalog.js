@@ -24,14 +24,15 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      chats: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
-        allowNull: false,
-        defaultValue: []
       }
     }),
-      await queryInterface.createTable('CatalogChat', {
+      await queryInterface.createTable('CatalogChats', {
+        id: {
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+          type: Sequelize.INTEGER
+        },
         catalogId: {
           allowNull: false,
           type: Sequelize.INTEGER,
@@ -47,12 +48,24 @@ module.exports = {
             model: 'Conversations',
             key: 'id'
           }
+        },
+        userId: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE
         }
       })
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('CatalogChat')
+    await queryInterface.dropTable('CatalogChats')
     await queryInterface.dropTable('Catalogs')
   }
 }
