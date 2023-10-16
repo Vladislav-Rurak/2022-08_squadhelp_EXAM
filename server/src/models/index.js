@@ -15,7 +15,6 @@ const configPath =
     : path.join(__dirname, '..', '/config/postgresConfig.json')
 const config = require(configPath)[env]
 const db = {}
-
 const sequelize = new Sequelize(
   config.database,
   config.username,
@@ -34,9 +33,9 @@ fs.readdirSync(__dirname)
       sequelize,
       Sequelize.DataTypes
     )
+
     db[model.name] = model
   })
-
 db['Contests'].belongsTo(db['Users'], { foreignKey: 'userId', sourceKey: 'id' })
 db['Contests'].hasMany(db['Offers'], {
   foreignKey: 'contestId',
@@ -58,6 +57,47 @@ db['Ratings'].belongsTo(db['Users'], { foreignKey: 'userId', targetKey: 'id' })
 db['Ratings'].belongsTo(db['Offers'], {
   foreignKey: 'offerId',
   targetKey: 'id'
+})
+
+db['Users'].hasMany(db['Conversations'], {
+  foreignKey: 'participants',
+  targerKey: 'id'
+})
+db['Users'].hasMany(db['Catalogs'], {
+  foreignKey: 'userId',
+  targetKey: 'id'
+})
+
+db['Conversations'].belongsTo(db['Users'], {
+  foreignKey: 'participants',
+  targerKey: 'id'
+})
+db['Conversations'].hasMany(db['Messages'], {
+  foreignKey: 'conversationId',
+  targerKey: 'id',
+  as: 'conversationData'
+})
+
+db['Conversations'].belongsToMany(db['Catalogs'], {
+  through: 'CatalogChats',
+  foreignKey: 'chatId',
+  targerKey: 'id'
+})
+
+db['Messages'].belongsTo(db['Conversations'], {
+  foreignKey: 'conversationId',
+  targerKey: 'id',
+  as: 'conversationData'
+})
+db['Catalogs'].belongsTo(db['Users'], {
+  foreignKey: 'userId',
+  targetKey: 'id'
+})
+
+db['Catalogs'].belongsToMany(db['Conversations'], {
+  through: 'CatalogChats',
+  foreignKey: 'catalogId',
+  targerKey: 'id'
 })
 
 db.sequelize = sequelize

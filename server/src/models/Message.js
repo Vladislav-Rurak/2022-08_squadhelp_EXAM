@@ -1,7 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
   const Message = sequelize.define(
-    'Message',
+    'Messages',
     {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
       sender: {
         allowNull: false,
         type: DataTypes.INTEGER
@@ -10,12 +16,20 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING
       },
-      body: {
+      conversationId: {
         allowNull: false,
         type: DataTypes.INTEGER
       }
     },
-    { timestump: true }
+    { timestamps: true }
   )
+
+  Message.associate = function (models) {
+    Message.belongsTo(models.Conversation, {
+      foreignKey: 'conversation_id',
+      targetKey: 'id',
+      as: 'conversationData'
+    })
+  }
   return Message
 }

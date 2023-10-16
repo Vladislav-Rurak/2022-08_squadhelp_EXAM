@@ -1,23 +1,40 @@
 module.exports = (sequelize, DataTypes) => {
   const Catalog = sequelize.define(
-    'Catalog',
+    'Catalogs',
     {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
       userId: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        type: DataTypes.INTEGER,
         allowNull: false
       },
       catalogName: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
         allowNull: false
       }
     },
-    { timestamp: true }
+    { timestamps: true }
   )
-  Catalog.assosiate = function (models) {
-    Catalog.hasMany(models.Conversation, {
-      foreignKey: 'catalogId',
-      as: 'chats'
+
+  Catalog.associate = function (models) {
+    Catalog.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      targetKey: 'id'
     })
   }
+
+  Catalog.associate = function (models) {
+    Catalog.belongsToMany(models.Conversation, {
+      through: 'CatalogChats',
+      foreignKey: 'chat_id',
+      targetKey: 'id',
+      as: 'CatalogConversations'
+    })
+  }
+
   return Catalog
 }

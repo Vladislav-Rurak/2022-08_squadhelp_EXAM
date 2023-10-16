@@ -1,7 +1,15 @@
+const { BelongsToMany } = require('sequelize')
+
 module.exports = (sequelize, DataTypes) => {
   const Conversation = sequelize.define(
-    'Conversation',
+    'Conversations',
     {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+      },
       participants: {
         type: DataTypes.ARRAY(DataTypes.INTEGER),
         allowNull: false
@@ -19,6 +27,30 @@ module.exports = (sequelize, DataTypes) => {
       timestamps: true
     }
   )
+
+  Conversation.associate = function (models) {
+    Conversation.belongsTo(models.User, {
+      foreignKey: 'participants',
+      targetKey: 'id'
+    })
+  }
+
+  Conversation.associate = function (models) {
+    Conversation.hasMany(models.Message, {
+      foreignKey: 'conversation_id',
+      targetKey: 'id',
+      as: 'conversationData'
+    })
+  }
+
+  Conversation.associate = function (models) {
+    Conversation.belongsToMany(models.Catalog, {
+      through: 'CatalogChats',
+      foreignKey: 'catalog_id',
+      targetKey: 'id',
+      as: 'CatalogConversations'
+    })
+  }
 
   return Conversation
 }
