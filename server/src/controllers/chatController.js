@@ -29,6 +29,16 @@ module.exports.addMessage = async (req, res, next) => {
       conversation: newConversation._id
     })
     await message.save()
+
+    const countMessagesWithKeyword = await Message.countDocuments({
+      conversation: newConversation._id, // Используем ID новой беседы
+      body: { $regex: /паровоз/ } // Поиск по ключевому слову
+    })
+
+    console.log(
+      `Количество сообщений с ключевым словом "паровоз": ${countMessagesWithKeyword}`
+    )
+
     message._doc.participants = participants
     const interlocutorId = participants.filter(
       participant => participant !== req.tokenData.userId
