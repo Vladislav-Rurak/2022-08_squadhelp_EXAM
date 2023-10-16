@@ -18,7 +18,7 @@ offerRouter.post(
 offerRouter.post(
   '/setOfferStatus',
   checkToken.checkToken,
-  basicMiddlewares.onlyForCustomerWhoCreateContest,
+  basicMiddlewares.onlyForModerator,
   contestController.setOfferStatus
 )
 module.exports = offerRouter
