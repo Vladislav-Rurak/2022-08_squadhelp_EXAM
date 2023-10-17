@@ -62,7 +62,11 @@ class Header extends React.Component {
                 </a>
               </li>
               <li>
-                <Link onClick={this.logOut} style={{ textDecoration: 'none' }}>
+                <Link
+                  to='/login'
+                  onClick={this.logOut}
+                  style={{ textDecoration: 'none' }}
+                >
                   <span>Logout</span>
                 </Link>
               </li>
@@ -275,6 +279,7 @@ class Header extends React.Component {
             </div>
             {this.props.data && this.props.data.role === CONSTANTS.CUSTOMER && (
               <Link
+                to='startContest'
                 className={styles.startContestBtn}
                 onClick={this.startContests}
               >

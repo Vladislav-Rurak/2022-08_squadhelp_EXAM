@@ -9,13 +9,16 @@ const OptionalSelects = props => {
   if (props.isFetching) {
     return <Spinner />
   }
+
+  let content = null
+
   switch (props.contestType) {
-    case CONSTANTS.NAME_CONTEST: {
-      return (
+    case CONSTANTS.NAME_CONTEST:
+      content = (
         <>
           <SelectInput
             name='typeOfName'
-            header='type of company'
+            header='Type of company'
             classes={{
               inputContainer: styles.selectInputContainer,
               inputHeader: styles.selectHeader,
@@ -37,9 +40,9 @@ const OptionalSelects = props => {
           />
         </>
       )
-    }
-    case CONSTANTS.LOGO_CONTEST: {
-      return (
+      break
+    case CONSTANTS.LOGO_CONTEST:
+      content = (
         <>
           <div className={styles.inputContainer}>
             <span className={styles.inputHeader}>
@@ -48,7 +51,7 @@ const OptionalSelects = props => {
             <FormInput
               name='nameVenture'
               type='text'
-              label='name of venture'
+              label='Name of venture'
               classes={{
                 container: styles.componentInputContainer,
                 input: styles.input,
@@ -69,9 +72,9 @@ const OptionalSelects = props => {
           />
         </>
       )
-    }
-    case CONSTANTS.TAGLINE_CONTEST: {
-      return (
+      break
+    case CONSTANTS.TAGLINE_CONTEST:
+      content = (
         <>
           <div className={styles.inputContainer}>
             <span className={styles.inputHeader}>
@@ -80,7 +83,7 @@ const OptionalSelects = props => {
             <FormInput
               name='nameVenture'
               type='text'
-              label='name of venture'
+              label='Name of venture'
               classes={{
                 container: styles.componentInputContainer,
                 input: styles.input,
@@ -101,8 +104,12 @@ const OptionalSelects = props => {
           />
         </>
       )
-    }
+      break
+    default:
+      break
   }
+
+  return content
 }
 
 export default OptionalSelects

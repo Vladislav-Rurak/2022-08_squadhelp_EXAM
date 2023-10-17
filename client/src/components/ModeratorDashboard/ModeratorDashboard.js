@@ -2,7 +2,6 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
-import classNames from 'classnames'
 import isEqual from 'lodash/isEqual'
 import {
   getContestsForCreative,

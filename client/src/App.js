@@ -16,7 +16,6 @@ import UserProfilePage from './pages/UserProfilePage/UserProfilePage'
 import 'react-toastify/dist/ReactToastify.css'
 import ContestCreationPage from './pages/ContestCreationPage/ContestCreationPage'
 import CONSTANTS from './constants'
-import browserHistory from './browserHistory'
 import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatContainer'
 import HowItWorksPage from './pages/HowItWorksPage/HowItWorksPage'
 import EventsPage from './pages/EventsPage/EventsPage'
@@ -24,7 +23,7 @@ import EventsPage from './pages/EventsPage/EventsPage'
 class App extends Component {
   render () {
     return (
-      <Router history={browserHistory}>
+      <Router>
         <ToastContainer
           position='top-center'
           autoClose={5000}

@@ -74,6 +74,7 @@ class CustomerDashboard extends React.Component {
       <div className={styles.mainContainer}>
         <div className={styles.filterContainer}>
           <Link
+            to='/dashboard'
             style={{ textDecoration: 'none' }}
             onClick={() =>
               this.props.newFilter(CONSTANTS.CONTEST_STATUS_ACTIVE)
@@ -88,6 +89,7 @@ class CustomerDashboard extends React.Component {
             Active Contests
           </Link>
           <Link
+            to='/dashboard'
             style={{ textDecoration: 'none' }}
             onClick={() =>
               this.props.newFilter(CONSTANTS.CONTEST_STATUS_FINISHED)
@@ -102,6 +104,7 @@ class CustomerDashboard extends React.Component {
             Completed contests
           </Link>
           <Link
+            to='/dashboard'
             style={{ textDecoration: 'none' }}
             onClick={() =>
               this.props.newFilter(CONSTANTS.CONTEST_STATUS_PENDING)

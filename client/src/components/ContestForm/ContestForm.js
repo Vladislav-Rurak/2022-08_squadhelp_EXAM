@@ -33,21 +33,21 @@ class ContestForm extends React.Component {
   getPreference = () => {
     const { contestType } = this.props
     switch (contestType) {
-      case CONSTANTS.NAME_CONTEST: {
+      case CONSTANTS.NAME_CONTEST:
         this.props.getData({
           characteristic1: 'nameStyle',
           characteristic2: 'typeOfName'
         })
         break
-      }
-      case CONSTANTS.TAGLINE_CONTEST: {
+      case CONSTANTS.TAGLINE_CONTEST:
         this.props.getData({ characteristic1: 'typeOfTagline' })
         break
-      }
-      case CONSTANTS.LOGO_CONTEST: {
+      case CONSTANTS.LOGO_CONTEST:
         this.props.getData({ characteristic1: 'brandStyle' })
         break
-      }
+      default:
+        console.warn('Unknown contestType:', contestType)
+        break
     }
   }
 

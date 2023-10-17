@@ -374,7 +374,12 @@ const HowItWorksPage = () => {
                 visibleText={[
                   ` We are open to anyone to signup. However, we have an extensive
                 "`,
-                  <a a href='http://www.google.com' target='_blank'>
+                  <a
+                    a
+                    href='http://www.google.com'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
                     Quality Scoring
                   </a>,
                   `" process which ensures that high quality creatives have the
@@ -670,7 +675,7 @@ const HowItWorksPage = () => {
               </p>
               <div className={styles.inputContainer}>
                 <input
-                  placeHolder='Search over 75,000 Names'
+                  placeholder='Search over 75,000 Names'
                   className={styles.input}
                 ></input>
                 <button className={styles.searchBtn}>

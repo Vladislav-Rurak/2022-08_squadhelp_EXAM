@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { differenceInSeconds, format } from 'date-fns'
+import React, { useState, useEffect } from 'react'
+import { differenceInSeconds } from 'date-fns'
 import styles from './EventTimer.module.sass'
 
 const EventTimer = ({
@@ -18,10 +18,42 @@ const EventTimer = ({
       notifyBefore * 60
   )
 
-  const intervalRef = useRef(null)
-
   useEffect(() => {
     let intervalId
+
+    function formatTimeUnit (value, unit) {
+      if (value !== 0) {
+        return `${value}${unit}`
+      }
+      return ''
+    }
+
+    function formatTimer (secondsRemaining) {
+      if (secondsRemaining <= 0) {
+        return 'Таймер истек'
+      }
+
+      const years = Math.floor(secondsRemaining / (365 * 24 * 60 * 60))
+      const months = Math.floor(
+        (secondsRemaining % (365 * 24 * 60 * 60)) / (30 * 24 * 60 * 60)
+      )
+      const days = Math.floor(
+        (secondsRemaining % (30 * 24 * 60 * 60)) / (24 * 60 * 60)
+      )
+      const hours = Math.floor((secondsRemaining % (24 * 60 * 60)) / (60 * 60))
+      const minutes = Math.floor((secondsRemaining % (60 * 60)) / 60)
+      const seconds = secondsRemaining % 60
+
+      const formattedTime =
+        formatTimeUnit(years, 'y ') +
+        formatTimeUnit(months, 'mon ') +
+        formatTimeUnit(days, 'd ') +
+        formatTimeUnit(hours, 'h ') +
+        formatTimeUnit(minutes, 'm ') +
+        formatTimeUnit(seconds, 's ')
+
+      return formattedTime.trim()
+    }
 
     const updateTimer = () => {
       const targetDate = new Date(`${date}T${time}`)
@@ -59,40 +91,6 @@ const EventTimer = ({
     initialSecondsRemaining,
     isCompleted
   ])
-
-  function formatTimeUnit (value, unit) {
-    if (value !== 0) {
-      return `${value}${unit}`
-    }
-    return ''
-  }
-
-  function formatTimer (secondsRemaining) {
-    if (secondsRemaining <= 0) {
-      return 'Таймер истек'
-    }
-
-    const years = Math.floor(secondsRemaining / (365 * 24 * 60 * 60))
-    const months = Math.floor(
-      (secondsRemaining % (365 * 24 * 60 * 60)) / (30 * 24 * 60 * 60)
-    )
-    const days = Math.floor(
-      (secondsRemaining % (30 * 24 * 60 * 60)) / (24 * 60 * 60)
-    )
-    const hours = Math.floor((secondsRemaining % (24 * 60 * 60)) / (60 * 60))
-    const minutes = Math.floor((secondsRemaining % (60 * 60)) / 60)
-    const seconds = secondsRemaining % 60
-
-    const formattedTime =
-      formatTimeUnit(years, 'y ') +
-      formatTimeUnit(months, 'mon ') +
-      formatTimeUnit(days, 'd ') +
-      formatTimeUnit(hours, 'h ') +
-      formatTimeUnit(minutes, 'm ') +
-      formatTimeUnit(seconds, 's ')
-
-    return formattedTime.trim()
-  }
 
   return (
     <div
