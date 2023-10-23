@@ -62,6 +62,11 @@ class Header extends React.Component {
                 </a>
               </li>
               <li>
+                <Link to='/events' style={{ textDecoration: 'none' }}>
+                  <span>Events</span>
+                </Link>
+              </li>
+              <li>
                 <Link
                   to='/login'
                   onClick={this.logOut}
@@ -158,11 +163,6 @@ class Header extends React.Component {
                     </li>
                     <li>
                       <a href='http://www.google.com'>Tech</a>
-                    </li>
-                    <li>
-                      <Link to='/events' style={{ textDecoration: 'none' }}>
-                        <span>Events</span>
-                      </Link>
                     </li>
                     <li className={styles.last}>
                       <a href='http://www.google.com'>More Categories</a>
