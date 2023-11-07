@@ -236,7 +236,6 @@ module.exports.blackList = async (req, res, next) => {
         .emitChangeBlockStatus(interlocutorId, currentChat)
     }
   } catch (err) {
-    console.log('err', err)
     res.send(err)
   }
 }
@@ -331,7 +330,6 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
 
     res.status(204).send()
   } catch (err) {
-    console.log('err', err)
     next(err)
   }
 }
@@ -367,7 +365,6 @@ module.exports.deleteCatalog = async (req, res, next) => {
       res.status(400).send('Error deleting Catalog and/or related CatalogChats')
     }
   } catch (err) {
-    console.log('err', err)
     next(err)
   }
 }
