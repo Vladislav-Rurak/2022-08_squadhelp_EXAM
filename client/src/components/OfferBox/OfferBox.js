@@ -107,64 +107,6 @@ const OfferBox = props => {
     })
   }
 
-  // const approveOffer = async () => {
-  //   confirmAlert({
-  //     title: 'confirm',
-  //     message: 'Are u sure?',
-  //     buttons: [
-  //       {
-  //         label: 'Yes',
-  //         onClick: async () => {
-  //           try {
-  //             const msg = {
-  //               to: props.data.User.email,
-  //               from: 'moderator@email.com',
-  //               subject: `Ваше предложение было одобрено`,
-  //               text: `Ваше предложение:
-  //               ${props.data.text}
-  //               было одобрено. Поздравляем!`
-  //             }
-  //             await sgMail.send(msg)
-  //             props.setOfferStatus(props.data.User.id, props.data.id, 'approve')
-  //           } catch (error) {
-  //             console.error('Error sending email:', error)
-  //           }
-  //         }
-  //       },
-  //       { label: 'No' }
-  //     ]
-  //   })
-  // }
-
-  // const declineOffer = () => {
-  //   confirmAlert({
-  //     title: 'decline',
-  //     message: 'Are u sure?',
-  //     buttons: [
-  //       {
-  //         label: 'Yes',
-  //         onClick: async () => {
-  //           try {
-  //             const msg = {
-  //               to: props.data.User.email,
-  //               from: 'moderator@email.com',
-  //               subject: `Ваше предложение было отклонено`,
-  //               text: `Ваше предложение:
-  //               ${props.data.text}
-  //                было отклонено.`
-  //             }
-  //             await sgMail.send(msg)
-  //             props.setOfferStatus(props.data.User.id, props.data.id, 'decline')
-  //           } catch (error) {
-  //             console.error('Error sending email:', error)
-  //           }
-  //         }
-  //       },
-  //       { label: 'No' }
-  //     ]
-  //   })
-  // }
-
   const changeMark = value => {
     props.clearError()
     props.changeMark({

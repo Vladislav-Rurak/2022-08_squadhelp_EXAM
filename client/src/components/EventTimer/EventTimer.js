@@ -65,7 +65,7 @@ const EventTimer = ({
         clearInterval(intervalId)
         setTimerText('Таймер истек')
         if (!isCompleted) {
-          onEventCompleted(id) // Вызывается только если событие не завершено
+          onEventCompleted(id) 
         }
       } else {
         const formattedTime = formatTimer(secondsRemaining)
@@ -78,7 +78,6 @@ const EventTimer = ({
 
     intervalId = setInterval(updateTimer, 1000)
 
-    // Очищаем интервал при размонтировании компонента
     return () => {
       clearInterval(intervalId)
     }
