@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useDispatch, useSelector } from 'react-redux'
 import Header from '../../components/Header/Header'
@@ -22,7 +22,7 @@ const EventsPage = () => {
   }, [events])
 
   const handleAddEvent = eventData => {
-    const now = new Date().getTime()
+    const now = Date.now()
     const targetTime = new Date(`${eventData.date}T${eventData.time}`).getTime()
     const notifyBeforeInSeconds = eventData.notifyBefore * 60
 
@@ -43,12 +43,9 @@ const EventsPage = () => {
   }
 
   const handleEventCompleted = eventId => {
-    const updatedEvents = events.map(event => {
-      if (event.id === eventId) {
-        return { ...event, isCompleted: true }
-      }
-      return event
-    })
+    const updatedEvents = events.map(event =>
+      event.id === eventId ? { ...event, isCompleted: true } : event
+    )
     dispatch(updateEventsData(updatedEvents))
   }
 
@@ -56,26 +53,27 @@ const EventsPage = () => {
     dispatch(updateEventsData([]))
   }
 
-  function calculateTimeRemaining (date, time) {
-    const now = new Date().getTime()
+  const calculateTimeRemaining = (date, time) => {
+    const now = Date.now()
     const targetTime = new Date(`${date}T${time}`).getTime()
-    const remainingTime = targetTime - now
-    return Math.max(remainingTime, 0)
+    return Math.max(targetTime - now, 0)
   }
 
-  const sortedEvents = events.sort((a, b) => {
-    if (a.isCompleted && !b.isCompleted) {
-      return 1
-    }
-    if (!a.isCompleted && b.isCompleted) {
-      return -1
-    }
+  const sortedEvents = useMemo(() => {
+    return events.slice().sort((a, b) => {
+      if (a.isCompleted && !b.isCompleted) {
+        return 1
+      }
+      if (!a.isCompleted && b.isCompleted) {
+        return -1
+      }
 
-    const timeRemainingA = calculateTimeRemaining(a.date, a.time)
-    const timeRemainingB = calculateTimeRemaining(b.date, b.time)
+      const timeRemainingA = calculateTimeRemaining(a.date, a.time)
+      const timeRemainingB = calculateTimeRemaining(b.date, b.time)
 
-    return timeRemainingA - timeRemainingB
-  })
+      return timeRemainingA - timeRemainingB
+    })
+  }, [events])
 
   return (
     <>
@@ -88,7 +86,7 @@ const EventsPage = () => {
         </button>
         <div className={styles.listContainer}>
           <div className={styles.listHeader}>
-            <p>Live upcomming checks</p>
+            <p>Live upcoming checks</p>
             <p>
               Remaining time{' '}
               <img

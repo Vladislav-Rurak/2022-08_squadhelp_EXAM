@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { differenceInSeconds, format } from 'date-fns'
 import styles from './EventTimer.module.sass'
 
@@ -19,77 +19,44 @@ const EventTimer = ({
 
   const intervalRef = useRef(null)
 
-  useEffect(() => {
-    let intervalId
+  const updateTimer = useCallback(() => {
+    const targetDate = new Date(`${date}T${time}`)
+    const currentDate = new Date()
+    const secondsRemaining = differenceInSeconds(targetDate, currentDate)
 
-    const updateTimer = () => {
-      const targetDate = new Date(`${date}T${time}`)
-      const currentDate = new Date()
-      const secondsRemaining = differenceInSeconds(targetDate, currentDate)
-
-      if (secondsRemaining <= 0) {
-        clearInterval(intervalId)
-        setTimerText('Таймер истек')
-        if (!isCompleted) {
-          onEventCompleted(id)
-        }
-      } else {
-        const formattedTime = formatTimer(secondsRemaining)
-        setTimerText(formattedTime)
-        const remainingTimePercentage =
-          (secondsRemaining / initialSecondsRemaining) * 100
-        setProgress(100 - remainingTimePercentage)
+    if (secondsRemaining <= 0) {
+      clearInterval(intervalRef.current)
+      setTimerText('Таймер истек')
+      if (!isCompleted) {
+        onEventCompleted(id)
       }
-    }
-
-    intervalId = setInterval(updateTimer, 1000)
-
-    return () => {
-      clearInterval(intervalId)
+    } else {
+      const formattedTime = format(
+        new Date(0, 0, 0, 0, 0, secondsRemaining),
+        'y MMM dd HH:mm:ss'
+      )
+      setTimerText(formattedTime)
+      const remainingTimePercentage =
+        (secondsRemaining / initialSecondsRemaining) * 100
+      setProgress(100 - remainingTimePercentage)
     }
   }, [
-    onEventCompleted,
     date,
     time,
     id,
     notifyBefore,
     initialSecondsRemaining,
-    isCompleted
+    isCompleted,
+    onEventCompleted
   ])
 
-  function formatTimeUnit (value, unit) {
-    if (value !== 0) {
-      return `${value}${unit}`
+  useEffect(() => {
+    intervalRef.current = setInterval(updateTimer, 1000)
+
+    return () => {
+      clearInterval(intervalRef.current)
     }
-    return ''
-  }
-
-  function formatTimer (secondsRemaining) {
-    if (secondsRemaining <= 0) {
-      return 'Таймер истек'
-    }
-
-    const years = Math.floor(secondsRemaining / (365 * 24 * 60 * 60))
-    const months = Math.floor(
-      (secondsRemaining % (365 * 24 * 60 * 60)) / (30 * 24 * 60 * 60)
-    )
-    const days = Math.floor(
-      (secondsRemaining % (30 * 24 * 60 * 60)) / (24 * 60 * 60)
-    )
-    const hours = Math.floor((secondsRemaining % (24 * 60 * 60)) / (60 * 60))
-    const minutes = Math.floor((secondsRemaining % (60 * 60)) / 60)
-    const seconds = secondsRemaining % 60
-
-    const formattedTime =
-      formatTimeUnit(years, 'y ') +
-      formatTimeUnit(months, 'mon ') +
-      formatTimeUnit(days, 'd ') +
-      formatTimeUnit(hours, 'h ') +
-      formatTimeUnit(minutes, 'm ') +
-      formatTimeUnit(seconds, 's ')
-
-    return formattedTime.trim()
-  }
+  }, [updateTimer])
 
   return (
     <div
