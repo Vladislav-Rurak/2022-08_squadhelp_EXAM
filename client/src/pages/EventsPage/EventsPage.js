@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import { useDispatch, useSelector } from 'react-redux'
 import Header from '../../components/Header/Header'
 import EventTimer from '../../components/EventTimer/EventTimer'
 import EventForm from '../../components/EventForm/EventForm'
 import styles from './EventsPage.module.sass'
 import CONSTANTS from '../../constants'
+import { updateEventsData } from '../../actions/actionCreator'
 
 const EventsPage = () => {
-  const [events, setEvents] = useState([])
+  const dispatch = useDispatch()
+  const events = useSelector(state => state.userStore.events)
 
   useEffect(() => {
     const storedEvents = JSON.parse(localStorage.getItem('events') || '[]')
-    setEvents(storedEvents)
-  }, [])
+    dispatch(updateEventsData(storedEvents))
+  }, [dispatch])
 
   useEffect(() => {
     localStorage.setItem('events', JSON.stringify(events))
@@ -35,7 +38,7 @@ const EventsPage = () => {
         ...eventData,
         isCompleted: false
       }
-      setEvents(prevEvents => [...prevEvents, newEvent])
+      dispatch(updateEventsData([...events, newEvent]))
     }
   }
 
@@ -46,11 +49,11 @@ const EventsPage = () => {
       }
       return event
     })
-    setEvents(updatedEvents)
+    dispatch(updateEventsData(updatedEvents))
   }
 
   const handleClearEvents = () => {
-    setEvents([])
+    dispatch(updateEventsData([]))
   }
 
   function calculateTimeRemaining (date, time) {
@@ -74,23 +77,12 @@ const EventsPage = () => {
     return timeRemainingA - timeRemainingB
   })
 
-  const completedEventsCount = events.filter(event => event.isCompleted).length
-
   return (
     <>
       <Header />
       <div className={styles.eventPage}>
         <h1>Events</h1>
         <EventForm onAddEvent={handleAddEvent} />
-        <div
-          className={`${
-            completedEventsCount === 0 ? ' ' : styles.completedEvent
-          }`}
-        >
-          {completedEventsCount === 0
-            ? ' '
-            : `Events ${completedEventsCount} completed`}
-        </div>
         <button onClick={handleClearEvents}>Clear Events</button>
         <div className={styles.listContainer}>
           <div className={styles.listHeader}>

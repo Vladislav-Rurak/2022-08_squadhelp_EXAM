@@ -14,8 +14,7 @@ const EventTimer = ({
   const [timerText, setTimerText] = useState('')
   const [progress, setProgress] = useState(0)
   const [initialSecondsRemaining] = useState(
-    differenceInSeconds(new Date(`${date}T${time}`), new Date()) -
-      notifyBefore * 60
+    differenceInSeconds(new Date(`${date}T${time}`), new Date())
   )
 
   const intervalRef = useRef(null)
@@ -26,14 +25,13 @@ const EventTimer = ({
     const updateTimer = () => {
       const targetDate = new Date(`${date}T${time}`)
       const currentDate = new Date()
-      const secondsRemaining =
-        differenceInSeconds(targetDate, currentDate) - notifyBefore * 60
+      const secondsRemaining = differenceInSeconds(targetDate, currentDate)
 
       if (secondsRemaining <= 0) {
         clearInterval(intervalId)
         setTimerText('Таймер истек')
         if (!isCompleted) {
-          onEventCompleted(id) // Вызывается только если событие не завершено
+          onEventCompleted(id)
         }
       } else {
         const formattedTime = formatTimer(secondsRemaining)
@@ -46,7 +44,6 @@ const EventTimer = ({
 
     intervalId = setInterval(updateTimer, 1000)
 
-    // Очищаем интервал при размонтировании компонента
     return () => {
       clearInterval(intervalId)
     }

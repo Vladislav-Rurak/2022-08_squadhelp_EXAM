@@ -89,12 +89,26 @@ class Header extends React.Component {
   }
 
   render () {
+    const { events } = this.props
+    const now = new Date().getTime()
+    const completedEventsCount = events.filter(event => {
+      const targetTime = new Date(`${event.date}T${event.time}`).getTime()
+      const notifyBeforeInSeconds = event.notifyBefore * 60
+      const isCompleted = now > targetTime - notifyBeforeInSeconds * 1000
+      return isCompleted
+    }).length
+
     if (this.props.isFetching) {
       return null
     }
     return (
       <div className={styles.headerContainer}>
         <div className={styles.fixedHeader}>
+          {completedEventsCount > 0 && (
+            <div className={styles.completedEvent}>
+              {`Events ${completedEventsCount} completed`}
+            </div>
+          )}
           <span className={styles.info}>
             Squadhelp recognized as one of the Most Innovative Companies by Inc
             Magazine.
