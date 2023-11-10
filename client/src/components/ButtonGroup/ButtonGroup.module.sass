@@ -1,5 +1,4 @@
 .buttonGroupContainer
-  height: 100px
   display: flex
   justify-content: space-between
   padding: 50px 50px 20px 50px
@@ -36,5 +35,9 @@
 .negativeParText
   color: gray
 
-
-
+@media screen and (max-width: 600px)
+  .buttonGroupContainer
+    flex-direction: column
+    align-items: center
+    min-width: 100px
+    max-width: 300px
