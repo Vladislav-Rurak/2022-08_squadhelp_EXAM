@@ -17,8 +17,14 @@ const ContestSideBar = props => {
   }
 
   const renderContestInfo = () => {
-    const { totalEntries } = props
+    const { role } = props.data
+    const { totalEntries, offers } = props
     const { User, prize } = props.contestData
+    const approvedOffers = offers.filter(
+      offer => offer.status === CONSTANTS.OFFER_STATUS_APPROVE
+    )
+    const totalEntriesForBuyer = approvedOffers.length
+
     return (
       <div className={styles.contestSideBarInfo}>
         <div className={styles.contestInfo}>
@@ -54,7 +60,11 @@ const ContestSideBar = props => {
             <span>Contest Stats</span>
             <div className={styles.totalEntrie}>
               <span className={styles.totalEntriesLabel}>Total Entries</span>
-              <span>{totalEntries}</span>
+              {role === CONSTANTS.CUSTOMER ? (
+                <span>{totalEntriesForBuyer}</span>
+              ) : (
+                <span>{totalEntries}</span>
+              )}
             </div>
           </div>
         </div>

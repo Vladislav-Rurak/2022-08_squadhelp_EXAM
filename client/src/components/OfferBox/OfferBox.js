@@ -211,8 +211,7 @@ const OfferBox = props => {
         </div>
       ) : (role === CONSTANTS.CUSTOMER &&
           status === CONSTANTS.OFFER_STATUS_APPROVE) ||
-        status === CONSTANTS.OFFER_STATUS_WON ||
-        status === CONSTANTS.OFFER_STATUS_REJECTED ? (
+        status === CONSTANTS.OFFER_STATUS_WON ? (
         <div className={styles.offerContainer}>
           <div className={styles.mainInfoContainer}>
             <div className={styles.userInfo}>
