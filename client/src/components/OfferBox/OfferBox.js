@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Rating from 'react-rating'
 import { withRouter } from 'react-router-dom'
 import isEqual from 'lodash/isEqual'
-import sgMail from '@sendgrid/mail'
 import classNames from 'classnames'
 import { confirmAlert } from 'react-confirm-alert'
 import {
@@ -18,6 +17,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import './OfferBox.css'
 
 const OfferBox = props => {
+  const [, updateState] = useState()
+  const forceUpdate = React.useCallback(() => updateState({}), [])
   const findConversationInfo = () => {
     const { messagesPreview, id } = props
     const participants = [id, props.data.User.id]
@@ -71,99 +72,57 @@ const OfferBox = props => {
     })
   }
 
-  sgMail.setApiKey(
-    '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'
-  )
-
-  const approveOffer = () => {
-    confirmAlert({
-      title: 'confirm',
-      message: 'Are u sure?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => {
-            props.setOfferStatus(props.data.User.id, props.data.id, 'approve')
-          }
-        },
-        { label: 'No' }
-      ]
-    })
+  const approveOffer = async () => {
+    try {
+      confirmAlert({
+        title: 'confirm',
+        message: 'Are u sure?',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: async () => {
+              await props.setOfferStatus(
+                props.data.User.id,
+                props.data.id,
+                'approve'
+              )
+              props.data.status = CONSTANTS.OFFER_STATUS_APPROVE
+              forceUpdate()
+            }
+          },
+          { label: 'No' }
+        ]
+      })
+    } catch (error) {
+      console.error('Error approving offer:', error)
+    }
   }
 
-  const declineOffer = () => {
-    confirmAlert({
-      title: 'confirm',
-      message: 'Are u sure?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => {
-            props.setOfferStatus(props.data.User.id, props.data.id, 'decline')
-          }
-        },
-        { label: 'No' }
-      ]
-    })
+  const declineOffer = async () => {
+    try {
+      confirmAlert({
+        title: 'confirm',
+        message: 'Are u sure?',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: async () => {
+              await props.setOfferStatus(
+                props.data.User.id,
+                props.data.id,
+                'decline'
+              )
+              props.data.status = CONSTANTS.OFFER_STATUS_DECLINE
+              forceUpdate()
+            }
+          },
+          { label: 'No' }
+        ]
+      })
+    } catch (error) {
+      console.error('Error declining offer:', error)
+    }
   }
-
-  // const approveOffer = async () => {
-  //   confirmAlert({
-  //     title: 'confirm',
-  //     message: 'Are u sure?',
-  //     buttons: [
-  //       {
-  //         label: 'Yes',
-  //         onClick: async () => {
-  //           try {
-  //             const msg = {
-  //               to: props.data.User.email,
-  //               from: 'moderator@email.com',
-  //               subject: `Ваше предложение было одобрено`,
-  //               text: `Ваше предложение:
-  //               ${props.data.text}
-  //               было одобрено. Поздравляем!`
-  //             }
-  //             await sgMail.send(msg)
-  //             props.setOfferStatus(props.data.User.id, props.data.id, 'approve')
-  //           } catch (error) {
-  //             console.error('Error sending email:', error)
-  //           }
-  //         }
-  //       },
-  //       { label: 'No' }
-  //     ]
-  //   })
-  // }
-
-  // const declineOffer = () => {
-  //   confirmAlert({
-  //     title: 'decline',
-  //     message: 'Are u sure?',
-  //     buttons: [
-  //       {
-  //         label: 'Yes',
-  //         onClick: async () => {
-  //           try {
-  //             const msg = {
-  //               to: props.data.User.email,
-  //               from: 'moderator@email.com',
-  //               subject: `Ваше предложение было отклонено`,
-  //               text: `Ваше предложение:
-  //               ${props.data.text}
-  //                было отклонено.`
-  //             }
-  //             await sgMail.send(msg)
-  //             props.setOfferStatus(props.data.User.id, props.data.id, 'decline')
-  //           } catch (error) {
-  //             console.error('Error sending email:', error)
-  //           }
-  //         }
-  //       },
-  //       { label: 'No' }
-  //     ]
-  //   })
-  // }
 
   const changeMark = value => {
     props.clearError()
