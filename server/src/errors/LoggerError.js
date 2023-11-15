@@ -16,7 +16,6 @@ const LoggerError = createLogger({
   format: combine(timestamp(), customFormat),
   transports: [new transports.File({ filename: CONSTANT.ERROR_LOG })]
 })
-
 export const logError = data => {
   LoggerError.error(data)
 }
