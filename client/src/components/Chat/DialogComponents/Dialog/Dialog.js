@@ -81,12 +81,13 @@ class Dialog extends React.Component {
 
   render () {
     const { chatData, userId } = this.props
+
     return (
       <>
         <ChatHeader userId={userId} />
         {this.renderMainDialog()}
         <div ref={this.messagesEnd} />
-        {chatData && chatData.blackList.includes(true) ? (
+        {chatData && chatData.blackList && chatData.blackList.includes(true) ? (
           this.blockMessage()
         ) : (
           <ChatInput />
