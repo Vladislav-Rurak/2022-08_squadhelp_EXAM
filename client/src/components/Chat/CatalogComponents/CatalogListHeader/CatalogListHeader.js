@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Formik, Form } from 'formik'
 import {
@@ -11,16 +11,17 @@ import FormInput from '../../../FormInput/FormInput'
 import Schems from '../../../../validators/validationSchems'
 
 const CatalogListHeader = props => {
+  const [localCatalogName, setLocalCatalogName] = useState(props.catalogName)
+
   const changeCatalogName = values => {
     const { changeCatalogName, id } = props
     changeCatalogName({ catalogName: values.catalogName, catalogId: id })
+    setLocalCatalogName(values.catalogName)
   }
-  const {
-    catalogName,
-    changeShowModeCatalog,
-    changeRenameCatalogMode,
-    isRenameCatalog
-  } = props
+
+  const { changeShowModeCatalog, changeRenameCatalogMode, isRenameCatalog } =
+    props
+
   return (
     <div className={styles.headerContainer}>
       <i
@@ -29,7 +30,7 @@ const CatalogListHeader = props => {
       />
       {!isRenameCatalog && (
         <div className={styles.infoContainer}>
-          <span>{catalogName}</span>
+          <span>{localCatalogName}</span>
           <i
             className='fas fa-edit'
             onClick={() => changeRenameCatalogMode()}
@@ -40,7 +41,7 @@ const CatalogListHeader = props => {
         <div className={styles.changeContainer}>
           <Formik
             onSubmit={changeCatalogName}
-            initialValues={props.initialValues}
+            initialValues={{ catalogName: localCatalogName }}
             validationSchema={Schems.CatalogSchema}
           >
             <Form>
