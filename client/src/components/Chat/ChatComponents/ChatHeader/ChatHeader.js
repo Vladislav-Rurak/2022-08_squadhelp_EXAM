@@ -22,12 +22,16 @@ const ChatHeader = props => {
 
   const isFavorite = (chatData, userId) => {
     const { favoriteList, participants } = chatData
-    return favoriteList[participants.indexOf(userId)]
+    return favoriteList && participants
+      ? favoriteList[participants.indexOf(userId)]
+      : false
   }
 
   const isBlocked = (chatData, userId) => {
     const { participants, blackList } = chatData
-    return blackList[participants.indexOf(userId)]
+    return participants && blackList
+      ? blackList[participants.indexOf(userId)]
+      : false
   }
 
   const { avatar, firstName } = props.interlocutor
