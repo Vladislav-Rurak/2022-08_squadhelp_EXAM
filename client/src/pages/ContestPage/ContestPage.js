@@ -225,6 +225,7 @@ class ContestPage extends React.Component {
             <ContestSideBar
               contestData={contestData}
               totalEntries={offers.length}
+              offers={offers}
             />
           </div>
         )}
