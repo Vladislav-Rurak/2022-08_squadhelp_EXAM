@@ -107,15 +107,15 @@ const HowItWorksPage = () => {
           <div>
             <span className={styles.spanServices}>Out Services</span>
           </div>
-          <h2>3 Ways To Use Squadhelp</h2>
-          <p>
+          <h2 className={styles.h2Ways}>3 Ways To Use Squadhelp</h2>
+          <p className={styles.squadhelpOffers}>
             Squadhelp offers 3 ways to get you a perfect name for your business.
           </p>
         </div>
         <div className={styles.contestContainer}>
           <div className={styles.contests}>
             <LaunchContestSVG />
-            <h3>Launch a Contest</h3>
+            <h3 className={styles.contestsHeader}>Launch a Contest</h3>
             <p>
               Work with hundreds of creative experts to get c ustom name
               suggestions for your business or brand. All names are auto-checked
@@ -127,7 +127,7 @@ const HowItWorksPage = () => {
           </div>
           <div className={styles.contests}>
             <ExploreNamesSVG />
-            <h3>Explore Names For Sale</h3>
+            <h3 className={styles.contestsHeader}>Explore Names For Sale</h3>
             <p>
               Our branding team has curated thousands of pre-made names that you
               can purchase instantly. All names include a matching URL and a
@@ -139,7 +139,9 @@ const HowItWorksPage = () => {
           </div>
           <div className={styles.contests}>
             <ManagesContestSVG />
-            <h3>Agency-level Managed Contests</h3>
+            <h3 className={styles.contestsHeader}>
+              Agency-level Managed Contests
+            </h3>
             <p>
               Our Managed contests combine the power of crowdsourcing with the
               rich experience of our branding consultants. Get a complete
@@ -150,11 +152,10 @@ const HowItWorksPage = () => {
             </a>
           </div>
         </div>
-        <div></div>
         <div className={styles.namingContestContainer}>
           <div className={styles.contestsWork}>
             <ContestWorkSVG />
-            <h2>How Do Naming Contests Work?</h2>
+            <h2 className={styles.h3Contests}>How Do Naming Contests Work?</h2>
           </div>
           <div className={styles.chouseAgency}>
             <div className={styles.chouseAgencySVG}>
@@ -162,7 +163,6 @@ const HowItWorksPage = () => {
             </div>
             <ul className={styles.stepsContainer}>
               <li className={styles.listContest}>
-                {' '}
                 <div className={styles.numberContainer}>
                   <span className={styles.stepNumber}>1.</span>
                   <p className={styles.steps}>
@@ -218,8 +218,8 @@ const HowItWorksPage = () => {
             </ul>
           </div>
           <div className={styles.buttonGroupContainer}>
-            <div id='contest'>
-              <h3>Launching A Contest</h3>
+            <div id='contest' className={styles.buttonGroupContest}>
+              <h3 className={styles.h3Header}>Launching A Contest</h3>
               <ToogleTextButtom
                 initialText='How long does it take to start receiving submissions?'
                 visibleText='For Naming contests, you will start receiving your submissions
@@ -299,8 +299,8 @@ const HowItWorksPage = () => {
                 listItems={contestExample}
               />
             </div>
-            <div id='marketplace'>
-              <h3>Buying From Marketplace</h3>
+            <div id='marketplace' className={styles.buttonGroupContest}>
+              <h3 className={styles.h3Header}>Buying From Marketplace</h3>
               <ToogleTextButtom
                 initialText='What`s included with a Domain Purchase?'
                 visibleText={`When you purchase a domain from our premium domain
@@ -329,8 +329,8 @@ const HowItWorksPage = () => {
                 right away after making your first installment payment.`}
               />
             </div>
-            <div id='managed'>
-              <h3>Managed Contests</h3>
+            <div id='managed' className={styles.buttonGroupContest}>
+              <h3 className={styles.h3Header}>Managed Contests</h3>
               <ToogleTextButtom
                 initialText='What are Managed Contests?'
                 visibleText={[
@@ -367,8 +367,8 @@ const HowItWorksPage = () => {
                 corporations.`}
               />
             </div>
-            <div id='creatives'>
-              <h3>For Creatives</h3>
+            <div id='creatives' className={styles.buttonGroupContest}>
+              <h3 className={styles.h3Header}>For Creatives</h3>
               <ToogleTextButtom
                 initialText='Can anyone join your platform?'
                 visibleText={[
@@ -463,8 +463,8 @@ const HowItWorksPage = () => {
         </div>
         <div className={styles.questionsContainer}>
           <div className={styles.ensureContainer}>
-            <ul>
-              <li>
+            <ul className={styles.ulInfo}>
+              <li className={styles.liInfo}>
                 <span className={styles.thinArrow}>&gt;</span>
                 <div>
                   <h3>Pay a Fraction of cost vs hiring an agency</h3>
@@ -474,7 +474,7 @@ const HowItWorksPage = () => {
                   </p>
                 </div>
               </li>
-              <li className={styles.topBorder}>
+              <li className={(styles.topBorder, styles.liInfo)}>
                 <span className={styles.thinArrow}>&gt;</span>
                 <div>
                   <h3>Satisfaction Guarantee</h3>
@@ -497,12 +497,17 @@ const HowItWorksPage = () => {
               <button className={styles.consultationBtn}>
                 Schedule Consultation
               </button>
-              <a href={`${CONSTANTS.CONTACT_INFO.TEL}`}>
+              <a
+                href={`${CONSTANTS.CONTACT_INFO.TEL}`}
+                className={styles.contactNumberInfo}
+              >
                 <img
                   src={`${CONSTANTS.STATIC_IMAGES_PATH}phone_icon.png`}
                   alt='phone_icon'
                 />
-                <span>&nbsp;&nbsp;{CONSTANTS.CONTACT_INFO.TEL}</span>
+                <span className={styles.contactNumber}>
+                  &nbsp;&nbsp;{CONSTANTS.CONTACT_INFO.TEL}
+                </span>
               </a>
               <span>Call us for assistance</span>
             </div>
@@ -538,8 +543,8 @@ const HowItWorksPage = () => {
         <div className={styles.infoContainer}>
           <div className={styles.linkContainer}>
             <div>
-              <h2>Services</h2>
-              <ul>
+              <h2 className={styles.headerInfo}>Services</h2>
+              <ul className={styles.linkUlInfo}>
                 <li>
                   <a href='http://www.google.com'>Premium Domains For Sale</a>
                 </li>
@@ -588,8 +593,8 @@ const HowItWorksPage = () => {
               </ul>
             </div>
             <div>
-              <ul>
-                <h2>Tools</h2>
+              <h2 className={styles.headerInfo}>Tools</h2>
+              <ul className={styles.linkUlInfo}>
                 <li>
                   <a href='http://www.google.com'>Business Name Generator</a>
                 </li>
@@ -611,8 +616,8 @@ const HowItWorksPage = () => {
               </ul>
             </div>
             <div>
-              <h2>SquadHelp</h2>
-              <ul>
+              <h2 className={styles.headerInfo}>SquadHelp</h2>
+              <ul className={styles.linkUlInfo}>
                 <li>
                   <a href='http://www.google.com'>About</a>
                 </li>
@@ -634,9 +639,9 @@ const HowItWorksPage = () => {
               </ul>
             </div>
             <div>
-              <h2>Creatives</h2>
-              <ul>
+              <ul className={styles.linkUlInfo}>
                 <div>
+                  <h2 className={styles.headerInfo}>Creatives</h2>
                   <li>
                     <a href='http://www.google.com'>Get Started</a>
                   </li>
@@ -651,7 +656,7 @@ const HowItWorksPage = () => {
                   </li>
                 </div>
                 <div className={styles.legalContainer}>
-                  <h2>Legal</h2>
+                  <h2 className={styles.headerInfo}>Legal</h2>
                   <li>
                     <a href='http://www.google.com'>Terms of Service</a>
                   </li>
@@ -667,7 +672,7 @@ const HowItWorksPage = () => {
           </div>
           <div className={styles.footerContainer}>
             <div className={styles.trendingContainer}>
-              <h2>Trending Searches</h2>
+              <h2 className={styles.trendingHeader}>Trending Searches</h2>
               <p>
                 Explore our unique, hand-picked brand & business names for sale
                 along with a matching, premium domain name. Buy instantly for a
@@ -687,34 +692,34 @@ const HowItWorksPage = () => {
               <div>
                 <a href='http://www.google.com'>
                   <ShortNamesSVG />
-                  <span>Short Names</span>
+                  <span className={styles.linkHref}>Short Names</span>
                 </a>
               </div>
               <div>
                 <a href='http://www.google.com'>
                   <ShortNamesSVG />
-                  <span>One Word</span>
+                  <span className={styles.linkHref}>One Word</span>
                 </a>
               </div>
               <div>
                 <a href='http://www.google.com'>
                   <ShortNamesSVG />
-                  <span>4-letter</span>
+                  <span className={styles.linkHref}>4-letter</span>
                 </a>
               </div>
               <div className={styles.fiveLetter}>
                 <a href='http://www.google.com'>
                   <ShortNamesSVG />
-                  <span>5-letter</span>
+                  <span className={styles.linkHref}>5-letter</span>
                 </a>
               </div>
             </div>
           </div>
           <div className={styles.footerInfo}>
-            <span>Copyright © 2023 Squadhelp Inc</span>
-            <div>
+            <span className={styles.inc}>Copyright © 2023 Squadhelp Inc</span>
+            <div className={styles.divShooper}>
               <a href='http://www.google.com'>
-                <span>
+                <span className={styles.shooper}>
                   Squadhelp.com has a Shopper Approved rating of 4.9/5 based on
                   2782 ratings and reviews
                 </span>
