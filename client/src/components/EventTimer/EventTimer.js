@@ -14,8 +14,7 @@ const EventTimer = ({
   const [timerText, setTimerText] = useState('')
   const [progress, setProgress] = useState(0)
   const [initialSecondsRemaining] = useState(
-    differenceInSeconds(new Date(`${date}T${time}`), new Date()) -
-      notifyBefore * 60
+    differenceInSeconds(new Date(`${date}T${time}`), new Date())
   )
 
   useEffect(() => {
@@ -65,7 +64,7 @@ const EventTimer = ({
         clearInterval(intervalId)
         setTimerText('Таймер истек')
         if (!isCompleted) {
-          onEventCompleted(id) 
+          onEventCompleted(id)
         }
       } else {
         const formattedTime = formatTimer(secondsRemaining)
@@ -82,13 +81,13 @@ const EventTimer = ({
       clearInterval(intervalId)
     }
   }, [
-    onEventCompleted,
     date,
     time,
     id,
     notifyBefore,
     initialSecondsRemaining,
-    isCompleted
+    isCompleted,
+    onEventCompleted
   ])
 
   return (

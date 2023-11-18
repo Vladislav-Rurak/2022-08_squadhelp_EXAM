@@ -212,6 +212,12 @@ const Schems = {
         value => value && value.trim().length >= 1
       )
       .required('required')
+  }),
+  EventValidationSchema: yup.object({
+    name: yup.string().required(),
+    date: yup.date().required(),
+    time: yup.string().required(),
+    notifyBefore: yup.number().required().positive().integer().min(0)
   })
 }
 

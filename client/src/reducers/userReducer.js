@@ -3,7 +3,8 @@ import ACTION from '../actions/actionTypes'
 const initialState = {
   isFetching: true,
   error: null,
-  data: null
+  data: null,
+  events: []
 }
 
 const userReducer = function (state = initialState, action) {
@@ -56,6 +57,12 @@ const userReducer = function (state = initialState, action) {
       return {
         ...state,
         error: null
+      }
+    }
+    case ACTION.UPDATE_EVENTS_DATA: {
+      return {
+        ...state,
+        events: action.events
       }
     }
     default:

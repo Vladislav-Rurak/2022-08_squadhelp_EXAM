@@ -293,3 +293,8 @@ export const changeModalShow = data => ({
   type: ACTION.CHANGE_SHOW_MODAL,
   data
 })
+
+export const updateEventsData = events => ({
+  type: ACTION.UPDATE_EVENTS_DATA,
+  events
+})
