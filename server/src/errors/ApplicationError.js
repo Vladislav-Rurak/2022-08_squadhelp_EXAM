@@ -1,4 +1,5 @@
 const { logError } = require('./LoggerError')
+import reformationLogs from '../reformationLogs'
 
 class ApplicationError extends Error {
   constructor (message, status) {
@@ -13,6 +14,7 @@ class ApplicationError extends Error {
       code: this.code,
       stackTrace: this.stackTrace
     })
+    reformationLogs()
   }
 }
 
