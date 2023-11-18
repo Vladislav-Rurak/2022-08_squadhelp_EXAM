@@ -152,7 +152,6 @@ const HowItWorksPage = () => {
             </a>
           </div>
         </div>
-        <div></div>
         <div className={styles.namingContestContainer}>
           <div className={styles.contestsWork}>
             <ContestWorkSVG />
