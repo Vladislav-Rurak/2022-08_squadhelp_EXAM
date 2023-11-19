@@ -15,6 +15,7 @@ import CONSTANTS from '../../constants'
 import styles from './OfferBox.module.sass'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import './OfferBox.css'
+const nodemailer = require('nodemailer')
 
 const OfferBox = props => {
   const [, updateState] = useState()
@@ -74,6 +75,21 @@ const OfferBox = props => {
 
   const approveOffer = async () => {
     try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'moderator@gmail.com',
+          pass: 'password'
+        }
+      })
+
+      const mailOptions = {
+        from: 'moderator@gmail.com',
+        to: props.data.User.email,
+        subject: 'Offer Approved',
+        text: 'The offer has been approved.'
+      }
+
       confirmAlert({
         title: 'confirm',
         message: 'Are u sure?',
@@ -86,6 +102,15 @@ const OfferBox = props => {
                 props.data.id,
                 'approve'
               )
+
+              transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                  console.error('Error sending email:', error)
+                } else {
+                  console.log('Email sent: ' + info.response)
+                }
+              })
+
               props.data.status = CONSTANTS.OFFER_STATUS_APPROVE
               forceUpdate()
             }
@@ -100,6 +125,21 @@ const OfferBox = props => {
 
   const declineOffer = async () => {
     try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'moderator@gmail.com',
+          pass: 'password'
+        }
+      })
+
+      const mailOptions = {
+        from: 'moderator@gmail.com',
+        to: props.data.User.email,
+        subject: 'Offer Declined',
+        text: 'Unfortunately, the offer has been declined.'
+      }
+
       confirmAlert({
         title: 'confirm',
         message: 'Are u sure?',
@@ -112,6 +152,15 @@ const OfferBox = props => {
                 props.data.id,
                 'decline'
               )
+
+              transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                  console.error('Error sending email:', error)
+                } else {
+                  console.log('Email sent: ' + info.response)
+                }
+              })
+
               props.data.status = CONSTANTS.OFFER_STATUS_DECLINE
               forceUpdate()
             }
