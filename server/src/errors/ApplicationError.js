@@ -1,5 +1,5 @@
 const { logError } = require('./LoggerError')
-import reformationLogs from '../reformationLogs'
+const reformationLogs = require('../reformationLogs')
 
 class ApplicationError extends Error {
   constructor (message, status) {
