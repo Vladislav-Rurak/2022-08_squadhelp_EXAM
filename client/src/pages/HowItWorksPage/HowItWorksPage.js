@@ -87,7 +87,7 @@ const HowItWorksPage = () => {
             <span className={styles.spanPlatform}>
               World's #1 Naming Platform
             </span>
-            <h1>How Does Squadhelp Work?</h1>
+            <h1 className={styles.title}>How Does Squadhelp Work?</h1>
             <p className={styles.squadhelpHelps}>
               Squadhelp helps you come up with a great name for your business by
               combining the power of crowdsourcing with sophisticated technology
@@ -158,9 +158,6 @@ const HowItWorksPage = () => {
             <h2 className={styles.h3Contests}>How Do Naming Contests Work?</h2>
           </div>
           <div className={styles.chouseAgency}>
-            <div className={styles.chouseAgencySVG}>
-              <ChouseAgencySVG />
-            </div>
             <ul className={styles.stepsContainer}>
               <li className={styles.listContest}>
                 <div className={styles.numberContainer}>
@@ -198,6 +195,9 @@ const HowItWorksPage = () => {
                 </div>
               </li>
             </ul>
+            <div className={styles.chouseAgencySVG}>
+              <ChouseAgencySVG />
+            </div>
           </div>
         </div>
         <div className={styles.buttonContainer}>
@@ -509,7 +509,7 @@ const HowItWorksPage = () => {
           </div>
         </div>
         <div className={styles.sponsorContainer}>
-          <div>
+          <div className={styles.featuredHeader}>
             <h6>Featured In</h6>
           </div>
           <div className={styles.sponsorImageContainer}>
@@ -696,7 +696,7 @@ const HowItWorksPage = () => {
                   <span className={styles.linkHref}>One Word</span>
                 </a>
               </div>
-              <div>
+              <div className={styles.fourLetter}>
                 <a href='http://www.google.com'>
                   <ShortNamesSVG />
                   <span className={styles.linkHref}>4-letter</span>
