@@ -9,7 +9,8 @@ const EventTimer = ({
   id,
   notifyBefore,
   isCompleted,
-  onEventCompleted
+  onEventCompleted,
+  onDeleteEvent
 }) => {
   const [timerText, setTimerText] = useState('')
   const [progress, setProgress] = useState(0)
@@ -69,6 +70,9 @@ const EventTimer = ({
       <div className={styles.timerItems}>
         {isCompleted ? 'Таймер истек' : timerText}
       </div>
+      <button onClick={() => onDeleteEvent(id)} className={styles.deleteButton}>
+        Удалить
+      </button>
     </div>
   )
 }

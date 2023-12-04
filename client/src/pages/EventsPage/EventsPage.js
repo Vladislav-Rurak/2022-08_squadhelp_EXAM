@@ -48,6 +48,11 @@ const EventsPage = () => {
     dispatch(updateEventsData([]))
   }
 
+  const handleDeleteEvent = eventId => {
+    const updatedEvents = events.filter(event => event.id !== eventId)
+    dispatch(updateEventsData(updatedEvents))
+  }
+
   const calculateTimeRemaining = (date, time) => {
     const now = Date.now()
     const targetTime = new Date(`${date}T${time}`).getTime()
@@ -100,6 +105,7 @@ const EventsPage = () => {
               notifyBefore={parseInt(event.notifyBefore)}
               isCompleted={event.isCompleted}
               onEventCompleted={handleEventCompleted}
+              onDeleteEvent={handleDeleteEvent}
             />
           ))}
         </div>
