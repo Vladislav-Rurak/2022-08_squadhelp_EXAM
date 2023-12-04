@@ -27,11 +27,6 @@ const EventsPage = () => {
     const notifyBeforeInSeconds = eventData.notifyBefore * 60
 
     const isEventCompleted = now > targetTime - notifyBeforeInSeconds * 1000
-
-    if (isEventCompleted) {
-      alert('Вы не можете добавить завершенное событие')
-      return
-    }
     if (!eventData.isCompleted) {
       const newEvent = {
         id: uuidv4(),
