@@ -15,7 +15,6 @@ import CONSTANTS from '../../constants'
 import styles from './OfferBox.module.sass'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 import './OfferBox.css'
-const nodemailer = require('nodemailer')
 
 const OfferBox = props => {
   const [, updateState] = useState()
@@ -46,12 +45,18 @@ const OfferBox = props => {
       buttons: [
         {
           label: 'Yes',
-          onClick: () =>
-            props.setOfferStatus(props.data.User.id, props.data.id, 'resolve')
+          onClick: async () => {
+            await props.setOfferStatus(
+              props.data.User.id,
+              props.data.id,
+              'resolve'
+            )
+
+            props.data.status = CONSTANTS.OFFER_STATUS_APPROVE
+            forceUpdate()
+          }
         },
-        {
-          label: 'No'
-        }
+        { label: 'No' }
       ]
     })
   }
@@ -63,114 +68,66 @@ const OfferBox = props => {
       buttons: [
         {
           label: 'Yes',
-          onClick: () =>
-            props.setOfferStatus(props.data.User.id, props.data.id, 'reject')
+          onClick: async () => {
+            await props.setOfferStatus(
+              props.data.User.id,
+              props.data.id,
+              'reject'
+            )
+
+            props.data.status = CONSTANTS.OFFER_STATUS_APPROVE
+            forceUpdate()
+          }
         },
-        {
-          label: 'No'
-        }
+        { label: 'No' }
       ]
     })
   }
 
   const approveOffer = async () => {
-    try {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'moderator@gmail.com',
-          pass: 'password'
-        }
-      })
+    confirmAlert({
+      title: 'confirm',
+      message: 'Are u sure?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            await props.setOfferStatus(
+              props.data.User.id,
+              props.data.id,
+              'approve'
+            )
 
-      const mailOptions = {
-        from: 'moderator@gmail.com',
-        to: props.data.User.email,
-        subject: 'Offer Approved',
-        text: 'The offer has been approved.'
-      }
-
-      confirmAlert({
-        title: 'confirm',
-        message: 'Are u sure?',
-        buttons: [
-          {
-            label: 'Yes',
-            onClick: async () => {
-              await props.setOfferStatus(
-                props.data.User.id,
-                props.data.id,
-                'approve'
-              )
-
-              transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                  console.error('Error sending email:', error)
-                } else {
-                  console.log('Email sent: ' + info.response)
-                }
-              })
-
-              props.data.status = CONSTANTS.OFFER_STATUS_APPROVE
-              forceUpdate()
-            }
-          },
-          { label: 'No' }
-        ]
-      })
-    } catch (error) {
-      console.error('Error approving offer:', error)
-    }
+            props.data.status = CONSTANTS.OFFER_STATUS_APPROVE
+            forceUpdate()
+          }
+        },
+        { label: 'No' }
+      ]
+    })
   }
 
   const declineOffer = async () => {
-    try {
-      const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'moderator@gmail.com',
-          pass: 'password'
-        }
-      })
+    confirmAlert({
+      title: 'confirm',
+      message: 'Are u sure?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: async () => {
+            await props.setOfferStatus(
+              props.data.User.id,
+              props.data.id,
+              'decline'
+            )
 
-      const mailOptions = {
-        from: 'moderator@gmail.com',
-        to: props.data.User.email,
-        subject: 'Offer Declined',
-        text: 'Unfortunately, the offer has been declined.'
-      }
-
-      confirmAlert({
-        title: 'confirm',
-        message: 'Are u sure?',
-        buttons: [
-          {
-            label: 'Yes',
-            onClick: async () => {
-              await props.setOfferStatus(
-                props.data.User.id,
-                props.data.id,
-                'decline'
-              )
-
-              transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                  console.error('Error sending email:', error)
-                } else {
-                  console.log('Email sent: ' + info.response)
-                }
-              })
-
-              props.data.status = CONSTANTS.OFFER_STATUS_DECLINE
-              forceUpdate()
-            }
-          },
-          { label: 'No' }
-        ]
-      })
-    } catch (error) {
-      console.error('Error declining offer:', error)
-    }
+            props.data.status = CONSTANTS.OFFER_STATUS_DECLINE
+            forceUpdate()
+          }
+        },
+        { label: 'No' }
+      ]
+    })
   }
 
   const changeMark = value => {
