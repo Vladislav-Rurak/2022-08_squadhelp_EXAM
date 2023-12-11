@@ -1,3 +1,4 @@
+const nodemailer = require('nodemailer')
 const db = require('../models')
 const ServerError = require('../errors/ServerError')
 const contestQueries = require('./queries/contestQueries')
@@ -234,6 +235,32 @@ const resolveOffer = async (
 
 module.exports.setOfferStatus = async (req, res, next) => {
   let transaction
+  const creatorData = await db.Users.findOne({
+    where: req.body.creatorId
+  })
+  const sendEmail = async (to, subject) => {
+    try {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'moderator@gmail.com',
+          pass: 'password'
+        }
+      })
+
+      const mailOptions = {
+        from: 'moderator@gmail.com',
+        to,
+        subject
+      }
+
+      await transporter.sendMail(mailOptions)
+      console.log('Email sent successfully')
+    } catch (error) {
+      console.error('Error sending email:', error)
+    }
+  }
+
   if (req.body.command === 'reject') {
     try {
       const offer = await rejectOffer(
@@ -264,12 +291,19 @@ module.exports.setOfferStatus = async (req, res, next) => {
     }
   }
   if (req.body.command === 'approve') {
+    console.log('req.body', req.body)
+
     try {
       const offer = await approveOffer(
         req.body.offerId,
         req.body.creatorId,
         req.body.contestId
       )
+      sendEmail({
+        to: creatorData.dataValues.email,
+        subject: 'Offer approved',
+        text: 'Your offer approved by moderator'
+      })
       res.send(offer)
     } catch (err) {
       next(err)
@@ -282,6 +316,11 @@ module.exports.setOfferStatus = async (req, res, next) => {
         req.body.creatorId,
         req.body.contestId
       )
+      sendEmail({
+        to: creatorData.dataValues.email,
+        subject: 'Offer approved',
+        text: 'Your offer declined by moderator'
+      })
       res.send(offer)
     } catch (err) {
       next(err)
