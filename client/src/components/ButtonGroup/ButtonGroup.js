@@ -9,35 +9,21 @@ const ButtonGroup = () => {
     setSelectedButtonIndex(index)
   }
 
-  const buttonData = [
-    {
-      text: selectedButtonIndex === 0 ? 'Yes' : 'No',
-      onClick: () => textChange(0),
-      className:
-        selectedButtonIndex === 0
-          ? styles.ststatementButtons
-          : styles.negativeButtons,
-      parText: 'The Domain should exactly match the name'
-    },
-    {
-      text: selectedButtonIndex === 1 ? 'Yes' : 'No',
-      onClick: () => textChange(1),
-      className:
-        selectedButtonIndex === 1
-          ? styles.ststatementButtons
-          : styles.negativeButtons,
-      parText: 'But minor variations are allowed (Recommended)'
-    },
-    {
-      text: selectedButtonIndex === 2 ? 'Yes' : 'No',
-      onClick: () => textChange(2),
-      className:
-        selectedButtonIndex === 2
-          ? styles.ststatementButtons
-          : styles.negativeButtons,
-      parText: 'I am only looking for a name, not a Domain'
-    }
+  const parTextArray = [
+    'The Domain should exactly match the name',
+    'But minor variations are allowed (Recommended)',
+    'I am only looking for a name, not a Domain'
   ]
+
+  const buttonData = parTextArray.map((parText, index) => ({
+    text: selectedButtonIndex === index ? 'Yes' : 'No',
+    onClick: () => textChange(index),
+    className:
+      selectedButtonIndex === index
+        ? styles.ststatementButtons
+        : styles.negativeButtons,
+    parText
+  }))
 
   return (
     <div className={styles.buttonGroupContainer}>
