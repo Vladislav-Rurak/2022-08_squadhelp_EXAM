@@ -510,7 +510,7 @@ const HowItWorksPage = () => {
         </div>
         <div className={styles.sponsorContainer}>
           <div className={styles.featuredHeader}>
-            <h6>Featured In</h6>
+            <h6 className={styles.h6Header}>Featured In</h6>
           </div>
           <div className={styles.sponsorImageContainer}>
             <img

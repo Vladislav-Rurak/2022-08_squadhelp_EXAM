@@ -145,12 +145,12 @@ p
 
 .chouseAgencySVG
       position: absolute
-      left: 20%
 
 .listContest
       position: relative
       padding: 15px
       left: 400px
+      margin-left: 15%
       &:before
             position: absolute
             top: 0
@@ -202,7 +202,8 @@ p
       padding: 64px 15px
 
 .navigationList
-      height: 210px
+      height: 270px
+      width: 244px
       position: relative
       padding: 16px 32px
       background-color: #377DFF
@@ -215,7 +216,7 @@ p
       align-items: center
       color: #FFFFFFB3
       text-decoration: none
-      font-size: 14px
+      font-size: 18px
 
 .navigationListContainer
       width: 15%
@@ -223,7 +224,7 @@ p
       margin-left: 100px
 
 .buttonGroupContainer
-      margin-left: 50px
+      margin-left: 10%
 
 .h3Header
       color:#377DFF
@@ -316,8 +317,6 @@ p>span
       align-items: center
       margin-left:300px
 
-.ensureContainer
-      padding: 64px
 
 div>h3
       color: #000
@@ -347,7 +346,7 @@ p>a
 .liInfo 
       display: flex
       flex-direction: row
-      margin: 50px
+      margin: 20px
 
 .topBorder
       border-top: 1px solid #E7EAF3
@@ -469,7 +468,6 @@ li
       flex-direction: row
       flex-wrap: wrap
 
-
 div>a
       margin: 10px
       padding: 12px 16px
@@ -525,6 +523,9 @@ div>a
       justify-content: space-between
 
 @media screen and (max-width: 991px)
+      .mainContainer
+        overflow-x: hidden
+
       .squadhelpWorkContainer
         flex-direction: column-reverse
         height: auto
@@ -566,11 +567,13 @@ div>a
         flex-direction: column    
       
       .chouseAgencySVG
-        margin-right: 33%
         position: relative
 
       .listContest
-        width: 100vh
+        margin-left: -105%
+
+      .numberContainer
+        width: 70%
 
       .buttonContainer
         width: 100%
@@ -582,16 +585,25 @@ div>a
         
       .navigationList
         margin-left: -15%
+        margin-right: 18%
         padding: 10px
       
       .buttonGroupContainer
         margin-left: -5%
         margin-right: 5%
 
+      .paragraphStarted
+        text-align: center
+        
       .imagesContainer
+        width: 100%
         display: flex
         flex-direction: row
-        margin-left: 10%   
+        margin-left: 0   
+      
+      .imageContainer
+        height: 150px
+        width: 33%
 
       .questionsContainer
         width: 100%
@@ -604,17 +616,21 @@ div>a
         margin-left: -3%
 
       .expertContainer
-        width: 108%
-        margin-top: -8%
-        margin-left: -14%
+        width: 82.6%
+        margin-top: -8.5%
+        margin-left: -1.4%
 
       .sponsorContainer
         width: 100%
         flex-direction: row
         align-items: center
         justify-content: space-around
-        margin-left: -5%
-        
+        margin-left: -3%
+      
+      .h6Header
+        font-size: 28px
+        color: #000
+
       .sponsorImageContainer
         border-top: none
         margin-top: 20px
@@ -630,13 +646,15 @@ div>a
         justify-content: space-around
         margin-left: 0
 
-      .linkSVG
-        width: 100%
+      .linkSVG 
         display: flex
-        flex-direction: row
+        flex-wrap: wrap
 
-      .fourLetter
-        margin-top: 25px
+      .linkSVG > div 
+        box-sizing: border-box
+
+      .linkSVG .fiveLetter
+        flex-basis: 100%
 
       .footerInfo
         display: flex
@@ -649,6 +667,9 @@ div>a
         padding-bottom: 40px
 
 @media screen and (max-width: 767px)
+      .mainContainer
+        overflow-x: hidden
+
       .squadhelpWorkContainer
         flex-direction: column-reverse
         height: auto
@@ -707,13 +728,15 @@ div>a
         width: 100%
         
       .navigationList
-        margin-left: -15%
         padding: 10px
-      
+        margin-right: 19%
+
       .buttonGroupContainer
         margin-left: -5%
-        margin-right: 5%
 
+      .paragraphStarted
+        text-align: center
+            
       .imagesContainer
         display: flex
         flex-direction: column
@@ -731,7 +754,16 @@ div>a
 
       .expertContainer
         width: 80%
-        margin-top: -8%
+        margin-top: -9%
+        margin-left: 0
+
+      .featuredHeader
+        margin-top: 20%
+        margin-left: -65%
+
+      .h6Header
+        color: #000
+        font-size: 28px
 
       .sponsorContainer
         width: 100%
