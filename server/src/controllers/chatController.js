@@ -37,26 +37,8 @@ module.exports.addMessage = async (req, res, next) => {
       include: { model: Conversations }
     })
 
-    const countMessagesWithKeyword = await Message.aggregate([
-      {
-        $match: {
-          body: { $regex: /паровоз/i }
-        }
-      },
-      {
-        $group: {
-          _id: null,
-          count: { $sum: 1 }
-        }
-      }
-    ])
-
-    console.log(
-      `Количество сообщений с ключевым словом "паровоз": ${countMessagesWithKeyword[0].count}`
-    )
-
-    message.participants = participants
-    const interlocutorId = participants.find(
+    message._doc.participants = participants
+    const interlocutorId = participants.filter(
       participant => participant !== req.tokenData.userId
     )
 

@@ -6,6 +6,7 @@ const controller = require('./socketInit')
 const handlerError = require('./handlerError/handlerError')
 const router = require('./router')
 const path = require('path')
+const { default: countMessage } = require('./countMessage')
 
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -22,3 +23,5 @@ app.use(handlerError)
 const server = http.createServer(app)
 server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
 controller.createConnection(server)
+
+countMessage()
