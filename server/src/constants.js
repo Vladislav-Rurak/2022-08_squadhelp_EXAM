@@ -28,5 +28,5 @@ module.exports = {
   NOTIFICATION_CHANGE_OFFER_STATUS: 'changeOfferStatus',
   NEW_MESSAGE: 'newMessage',
   CHANGE_BLOCK_STATUS: 'CHANGE_BLOCK_STATUS',
-  ERROR_LOG: 'error.json'
+  ERROR_LOG: 'error.log'
 }
