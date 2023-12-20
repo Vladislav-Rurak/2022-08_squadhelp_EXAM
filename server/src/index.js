@@ -7,6 +7,7 @@ const handlerError = require('./handlerError/handlerError')
 const router = require('./router')
 const path = require('path')
 const { default: countMessage } = require('./countMessage')
+import reformationLogs from './reformationLogs'
 
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -25,3 +26,4 @@ server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
 controller.createConnection(server)
 
 countMessage()
+reformationLogs()
