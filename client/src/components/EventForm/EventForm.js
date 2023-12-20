@@ -13,19 +13,6 @@ const EventForm = ({ onAddEvent }) => {
     },
     validationSchema: Schems.EventValidationSchema,
     onSubmit: values => {
-      const eventDateTime = new Date(`${values.date}T${values.time}`)
-      const currentTime = new Date()
-
-      if (eventDateTime <= currentTime) {
-        alert('Event time must be in the future')
-        return
-      }
-
-      if (eventDateTime - currentTime <= values.notifyBefore * 60 * 1000) {
-        alert('Notify Before must be less than the time remaining to the event')
-        return
-      }
-
       onAddEvent({
         ...values,
         notifyBefore: parseInt(values.notifyBefore),

@@ -27,11 +27,6 @@ const EventsPage = () => {
     const notifyBeforeInSeconds = eventData.notifyBefore * 60
 
     const isEventCompleted = now > targetTime - notifyBeforeInSeconds * 1000
-
-    if (isEventCompleted) {
-      alert('Вы не можете добавить завершенное событие')
-      return
-    }
     if (!eventData.isCompleted) {
       const newEvent = {
         id: uuidv4(),
@@ -51,6 +46,11 @@ const EventsPage = () => {
 
   const handleClearEvents = () => {
     dispatch(updateEventsData([]))
+  }
+
+  const handleDeleteEvent = eventId => {
+    const updatedEvents = events.filter(event => event.id !== eventId)
+    dispatch(updateEventsData(updatedEvents))
   }
 
   const calculateTimeRemaining = (date, time) => {
@@ -105,6 +105,7 @@ const EventsPage = () => {
               notifyBefore={parseInt(event.notifyBefore)}
               isCompleted={event.isCompleted}
               onEventCompleted={handleEventCompleted}
+              onDeleteEvent={handleDeleteEvent}
             />
           ))}
         </div>

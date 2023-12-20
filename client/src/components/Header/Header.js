@@ -6,12 +6,26 @@ import CONSTANTS from '../../constants'
 import { clearUserStore, headerRequest } from '../../actions/actionCreator'
 
 class Header extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      completedEventsCount: 0
+    }
+
+    this.updateCompletedEventsCount = this.updateCompletedEventsCount.bind(this)
+  }
   componentDidMount () {
     if (!this.props.data) {
       this.props.getUser()
     }
-  }
+    this.updateCompletedEventsCount()
 
+    this.timerId = setInterval(this.updateCompletedEventsCount, 1000)
+  }
+  componentWillUnmount () {
+    clearInterval(this.timerId)
+  }
   logOut = () => {
     localStorage.clear()
     this.props.clearUserStore()
@@ -97,7 +111,7 @@ class Header extends React.Component {
     )
   }
 
-  render () {
+  updateCompletedEventsCount = () => {
     const { events } = this.props
     const now = new Date().getTime()
     const completedEventsCount = events.filter(event => {
@@ -106,6 +120,20 @@ class Header extends React.Component {
       const isCompleted = now > targetTime - notifyBeforeInSeconds * 1000
       return isCompleted
     }).length
+
+    this.setState({ completedEventsCount })
+  }
+
+  render () {
+    // const { events } = this.props
+    // const now = new Date().getTime()
+    // const completedEventsCount = events.filter(event => {
+    //   const targetTime = new Date(`${event.date}T${event.time}`).getTime()
+    //   const notifyBeforeInSeconds = event.notifyBefore * 60
+    //   const isCompleted = now > targetTime - notifyBeforeInSeconds * 1000
+    //   return isCompleted
+    // }).length
+    const { completedEventsCount } = this.state
 
     if (this.props.isFetching) {
       return null
