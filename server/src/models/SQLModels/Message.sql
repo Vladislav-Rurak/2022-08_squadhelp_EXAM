@@ -6,4 +6,5 @@ CREATE TABLE Messages (
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP NOT NULL,
   FOREIGN KEY (conversation_id) REFERENCES "Conversations"(id)
+  FOREIGN KEY (sender) REFERENCES "Users"(id)
 );
