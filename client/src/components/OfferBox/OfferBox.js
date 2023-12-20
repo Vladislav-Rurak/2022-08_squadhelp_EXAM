@@ -85,49 +85,56 @@ const OfferBox = props => {
   }
 
   const approveOffer = async () => {
-    confirmAlert({
-      title: 'confirm',
-      message: 'Are u sure?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: async () => {
-            await props.setOfferStatus(
-              props.data.User.id,
-              props.data.id,
-              'approve'
-            )
-
-            props.data.status = CONSTANTS.OFFER_STATUS_APPROVE
-            forceUpdate()
-          }
-        },
-        { label: 'No' }
-      ]
-    })
+    console.log('props', props)
+    try {
+      confirmAlert({
+        title: 'confirm',
+        message: 'Are u sure?',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: async () => {
+              await props.setOfferStatus(
+                props.data.User.id,
+                props.data.id,
+                'approve'
+              )
+              props.data.status = CONSTANTS.OFFER_STATUS_APPROVE
+              forceUpdate()
+            }
+          },
+          { label: 'No' }
+        ]
+      })
+    } catch (error) {
+      console.error('Error approving offer:', error)
+    }
   }
 
   const declineOffer = async () => {
-    confirmAlert({
-      title: 'confirm',
-      message: 'Are u sure?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: async () => {
-            await props.setOfferStatus(
-              props.data.User.id,
-              props.data.id,
-              'decline'
-            )
-
-            props.data.status = CONSTANTS.OFFER_STATUS_DECLINE
-            forceUpdate()
-          }
-        },
-        { label: 'No' }
-      ]
-    })
+    try {
+      confirmAlert({
+        title: 'confirm',
+        message: 'Are u sure?',
+        buttons: [
+          {
+            label: 'Yes',
+            onClick: async () => {
+              await props.setOfferStatus(
+                props.data.User.id,
+                props.data.id,
+                'decline'
+              )
+              props.data.status = CONSTANTS.OFFER_STATUS_DECLINE
+              forceUpdate()
+            }
+          },
+          { label: 'No' }
+        ]
+      })
+    } catch (error) {
+      console.error('Error declining offer:', error)
+    }
   }
 
   const changeMark = value => {
