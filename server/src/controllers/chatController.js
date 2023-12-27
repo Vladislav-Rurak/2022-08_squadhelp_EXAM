@@ -37,8 +37,8 @@ module.exports.addMessage = async (req, res, next) => {
       include: { model: Conversations }
     })
 
-    message._doc.participants = participants
-    const interlocutorId = participants.filter(
+    message.participants = participants
+    const interlocutorId = participants.find(
       participant => participant !== req.tokenData.userId
     )
 
