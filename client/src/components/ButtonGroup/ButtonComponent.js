@@ -9,7 +9,7 @@ const ButtonComponent = ({ text, onClick, className, parText }) => {
       >
         {text}
       </span>
-      <p className={text === 'No' ? styles.negativeParText : ' '}>{parText}</p>
+      <p className={text === 'No' && styles.negativeParText}>{parText}</p>
     </button>
   )
 }
