@@ -338,7 +338,8 @@ module.exports.getCustomersContests = (req, res, next) => {
       {
         model: db.Offers,
         required: false,
-        attributes: ['id']
+        attributes: ['id'],
+        where: { status: CONSTANTS.OFFER_STATUS_APPROVE }
       }
     ]
   })
