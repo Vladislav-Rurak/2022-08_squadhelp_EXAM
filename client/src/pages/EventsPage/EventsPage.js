@@ -81,9 +81,12 @@ const EventsPage = () => {
       <div className={styles.eventPage}>
         <h1>Events</h1>
         <EventForm onAddEvent={handleAddEvent} />
-        <button className={styles.clearEvents} onClick={handleClearEvents}>
-          Clear Events
-        </button>
+        <div className={styles.clearButton}>
+          <button className={styles.clearEvents} onClick={handleClearEvents}>
+            Clear Events
+          </button>
+        </div>
+
         <div className={styles.listContainer}>
           <div className={styles.listHeader}>
             <p>Live upcoming checks</p>
