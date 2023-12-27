@@ -290,7 +290,6 @@ module.exports.setOfferStatus = async (req, res, next) => {
     }
   }
   if (req.body.command === 'approve') {
-    console.log('req.body', req.body)
 
     try {
       const offer = await approveOffer(

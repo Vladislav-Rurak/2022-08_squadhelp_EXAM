@@ -22,11 +22,6 @@ const EventsPage = () => {
   }, [events])
 
   const handleAddEvent = eventData => {
-    const now = Date.now()
-    const targetTime = new Date(`${eventData.date}T${eventData.time}`).getTime()
-    const notifyBeforeInSeconds = eventData.notifyBefore * 60
-
-    const isEventCompleted = now > targetTime - notifyBeforeInSeconds * 1000
     if (!eventData.isCompleted) {
       const newEvent = {
         id: uuidv4(),

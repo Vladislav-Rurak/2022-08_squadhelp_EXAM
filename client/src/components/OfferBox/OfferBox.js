@@ -85,7 +85,6 @@ const OfferBox = props => {
   }
 
   const approveOffer = async () => {
-    console.log('props', props)
     try {
       confirmAlert({
         title: 'confirm',

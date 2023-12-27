@@ -125,14 +125,6 @@ class Header extends React.Component {
   }
 
   render () {
-    // const { events } = this.props
-    // const now = new Date().getTime()
-    // const completedEventsCount = events.filter(event => {
-    //   const targetTime = new Date(`${event.date}T${event.time}`).getTime()
-    //   const notifyBeforeInSeconds = event.notifyBefore * 60
-    //   const isCompleted = now > targetTime - notifyBeforeInSeconds * 1000
-    //   return isCompleted
-    // }).length
     const { completedEventsCount } = this.state
 
     if (this.props.isFetching) {
