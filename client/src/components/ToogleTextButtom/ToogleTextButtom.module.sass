@@ -1,5 +1,12 @@
 .buttonGroup
+      display: flex
+      flex-direction: column 
       width: 60rem
+
+.buttonGroupContainer
+      display: flex
+      justify-content: space-between
+      align-items: center
       border: 1px solid #e5e7eb
       outline: none
       background: transparent
@@ -13,25 +20,29 @@
       &:hover,
       &:focus,
       &:active 
-        color: #377DFF
-      
+        color: #377DFF      
 
 .arrow
       color: #377DFF
-      margin-left: calc( 100% - 5px  )
 
 .visibleText
+      margin-top: -21px
+      margin-bottom: 20px
       position: relative
-      left: -18px
-      width: calc( 100% - 5px  )
-      border-top: 1px solid #e5e7eb
+      border: 1px solid #e5e7eb
+      border-radius: 0.3125rem
       padding: 20px
       color: black
+@media screen and (max-width: 1400px)
+      .buttonGroup
+       width: 120%
 
+@media screen and (max-width: 1200px)
+      .buttonGroup
+       width: 105%
+       
 @media screen and (max-width: 767px)
       .buttonGroup
-        width: 105%
 
 @media screen and (max-width: 991px)
       .buttonGroup
-        width: 105%
