@@ -158,6 +158,9 @@ const HowItWorksPage = () => {
             <h2 className={styles.h3Contests}>How Do Naming Contests Work?</h2>
           </div>
           <div className={styles.chouseAgency}>
+            <div className={styles.chouseAgencySVG}>
+              <ChouseAgencySVG classname={styles.chouseAgencySVG1} />
+            </div>
             <ul className={styles.stepsContainer}>
               <li className={styles.listContest}>
                 <div className={styles.numberContainer}>
@@ -195,9 +198,6 @@ const HowItWorksPage = () => {
                 </div>
               </li>
             </ul>
-            <div className={styles.chouseAgencySVG}>
-              <ChouseAgencySVG />
-            </div>
           </div>
         </div>
         <div className={styles.buttonContainer}>

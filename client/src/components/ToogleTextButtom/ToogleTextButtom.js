@@ -9,23 +9,26 @@ const ToogleTextButtom = ({ initialText, visibleText, listItems }) => {
   }
 
   return (
-    <div>
-      <button onClick={toggleTextVisibility} className={styles.buttonGroup}>
+    <div className={styles.buttonGroup}>
+      <button
+        onClick={toggleTextVisibility}
+        className={styles.buttonGroupContainer}
+      >
         {initialText}
         <span className={styles.arrow}>{isTextVisible ? '▼' : '►'}</span>
-        {isTextVisible && (
-          <div className={styles.visibleText}>
-            {visibleText}
-            {listItems && listItems.length > 0 && (
-              <div>
-                {listItems.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
       </button>
+      {isTextVisible && (
+        <div className={styles.visibleText}>
+          {visibleText}
+          {listItems && listItems.length > 0 && (
+            <div>
+              {listItems.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   )
 }
